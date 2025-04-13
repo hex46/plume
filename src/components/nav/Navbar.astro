@@ -1,0 +1,56 @@
+---
+import NavLink from "@/components/nav/NavLink.astro";
+
+import type { MatchItem, NavItem } from "@/types/nav";
+const matches = import.meta.glob("../../pages/**/index.{astro,md}", {
+  eager: true,
+});
+const items = Object.values(matches) as MatchItem[];
+
+const mapToNavItem = (item: MatchItem): NavItem => ({
+  url: item.url || "/",
+  title:
+    item.url === ""
+      ? "Home"
+      : item.title || item.frontmatter?.title || "Untitled",
+});
+
+const navItemWithTitleOnly = (item: MatchItem) =>
+  Boolean(item.title || item.frontmatter?.title);
+
+const sortItem = (a: NavItem, b: NavItem): number => {
+  const isHome = (item: NavItem) => item.url === "/";
+  const isAbout = (item: NavItem) => item.url === "/about";
+
+  if (isHome(a)) return -1;
+  if (isHome(b)) return 1;
+  if (isAbout(a)) return 1;
+  if (isAbout(b)) return -1;
+
+  return a.title.localeCompare(b.title);
+};
+
+const navItems = items
+  .filter(navItemWithTitleOnly)
+  .map(mapToNavItem)
+  .sort(sortItem);
+---
+
+<nav>
+  <ul>
+    {navItems.slice(0, 5).map((item) => <NavLink item={item} />)}
+  </ul>
+</nav>
+
+<style>
+  nav {
+    border-bottom: 2px solid;
+  }
+
+  ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+    margin-bottom: 0.5rem;
+  }
+</style>

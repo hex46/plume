@@ -1,0 +1,30 @@
+---
+import type { NavItem } from "@/types/nav";
+
+interface Props {
+  item: NavItem;
+}
+
+const pathname = Astro.url.pathname;
+
+const { item } = Astro.props;
+---
+
+<li>
+  <a class={item.url === pathname ? "active" : undefined} href={item.url}>
+    {item.title}
+  </a>
+</li>
+<style>
+  a {
+    text-decoration: none;
+    color: inherit;
+    padding: 0.5rem 1rem 0.5rem 1rem;
+  }
+
+  a:hover,
+  a.active {
+    background: black;
+    color: white;
+  }
+</style>
