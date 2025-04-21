@@ -1,50 +1,26 @@
 ---
 import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+import type { PostItem } from "@/types/nav";
+import { getCollection } from "astro:content";
+
 export const title = "Blog";
 
-import { getCollection } from "astro:content";
-const publishedBlogEntries = (
-  await getCollection("blog", ({ data }) => {
-    return data.draft !== true;
-  })
-).sort((postA, postB) => postA.data.created - postB.data.created);
-
-const options = {
-  weekday: "numeric",
-  year: "numeric",
-  month: "numeric",
-  day: "numeric",
-};
+const publishedBlogEntries = (await getCollection("blog"))
+  .map(
+    (post) =>
+      ({
+        title: post.data.title,
+        description: post.data.description,
+        created: post.data.created,
+      }) as PostItem,
+  )
+  .sort((postA, postB) => postA.created.getDate() - postB.created.getDate());
 ---
 
 <Layout title={title}>
   <h1>Blog</h1>
   <div>
-    {
-      publishedBlogEntries.map((post) => (
-        <article>
-          <h2>
-            <a href={`/blog/${post.id}`}>{post.data.title}</a>
-          </h2>
-          <span>{post.data.created.toLocaleString()}</span>
-          <span>{post.data.description}</span>
-        </article>
-      ))
-    }
+    {publishedBlogEntries.map((post) => <PostCard item={post} />)}
   </div>
 </Layout>
-
-<style>
-  article {
-    display: grid;
-    grid-template-columns: 3fr 1fr;
-    gap: 5px;
-    justify-content: space-between;
-    align-items: baseline;
-  }
-
-  div {
-    display: grid;
-    gap: 2rem;
-  }
-</style>

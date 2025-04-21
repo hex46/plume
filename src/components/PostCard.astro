@@ -1,0 +1,18 @@
+---
+import type { PostItem } from "@/types/nav";
+interface Props {
+  item: PostItem;
+}
+
+const { item } = Astro.props;
+
+const postDate = Intl.DateTimeFormat("fr-FR").format(item.created);
+---
+
+<article>
+  <hgroup>
+    <h2><a href={`/blog/${item.id}`}>{item.title}</a></h2>
+    <p>{postDate}</p>
+  </hgroup>
+  <span>{item.description}</span>
+</article>
