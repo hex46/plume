@@ -21,7 +21,6 @@ const blog = defineCollection({
     description: z.string(),
     created: z.date(),
     lastUpdate: z.optional(z.date()),
-    status: z.boolean().optional(),
   }),
 });
 export const collections = { components, pages, blog };
