@@ -1,7 +1,17 @@
 ---
+import { getEntry, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
 
+const footerContent = await getEntry("components", "footer");
+
+if (!footerContent) {
+  throw new Error('Could not find "footer" page for "footer" component.');
+}
+
+const { Content } = await render(footerContent);
 ---
 
-<footer></footer>
-
-<style></style>
+<hr />
+<footer>
+  <Content />
+</footer>

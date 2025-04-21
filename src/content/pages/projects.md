@@ -1,6 +1,5 @@
 ---
-layout: "@/layouts/MarkdownLayout.astro"
-title: "About"
+title: "Projects"
 ---
 
 # Complete Markdown Syntax
@@ -84,6 +83,14 @@ console.log("Hello, world!");
 | Cell 4   | Cell 5   | Cell 6   |
 
 ## Horizontal Lines
+
+---
+
+---
+
+---
+
+---
 
 ## Character Escaping
 

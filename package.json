@@ -10,8 +10,11 @@
     "prettier": "prettier -w ."
   },
   "dependencies": {
+    "@picocss/pico": "^2.1.1",
     "astro": "^5.5.2",
-    "modern-normalize": "^3.0.1"
+    "autoprefixer": "^10.4.21",
+    "cssnano": "^7.0.6",
+    "sass": "^1.86.3"
   },
   "devDependencies": {
     "prettier": "^3.5.3",

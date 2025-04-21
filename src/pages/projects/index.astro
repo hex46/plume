@@ -1,0 +1,18 @@
+---
+import { getEntry, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+
+const projectsPage = await getEntry("pages", "projects");
+
+if (!projectsPage) {
+  throw new Error('Could not find "projects" page');
+}
+
+const { Content } = await render(projectsPage);
+
+export const title = "Projects";
+---
+
+<Layout title={projectsPage.data.title}>
+  <Content />
+</Layout>
