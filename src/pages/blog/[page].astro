@@ -1,0 +1,42 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import PostCard from "@/components/PostCard.astro";
+import type { PostItem } from "@/types/nav";
+import { getCollection } from "astro:content";
+import type { Page, PaginateFunction } from "astro";
+import Pagination from "@/components/pagination/Pagination.astro";
+
+interface Props {
+  page: Page<PostItem>;
+}
+
+export const title = "Blog";
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const publishedBlogEntries = (await getCollection("blog"))
+    .map(
+      (post) =>
+        ({
+          id: post.id,
+          title: post.data.title,
+          description: post.data.description,
+          created: post.data.created,
+        }) as PostItem,
+    )
+    .sort((postA, postB) => postB.created.getTime() - postA.created.getTime());
+
+  return paginate(publishedBlogEntries, { pageSize: 2 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={title}>
+  <h1>Blog</h1>
+  {page.data.map((post) => <PostCard item={post} />)}
+  <Pagination page={page} />
+</Layout>

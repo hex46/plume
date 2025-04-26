@@ -1,0 +1,27 @@
+---
+import type { Page } from "astro";
+import PaginationLink from "./PaginationLink.astro";
+
+interface Props {
+  page: Page<unknown>;
+}
+
+const { page } = Astro.props;
+---
+
+<div>
+  <PaginationLink link={page.url.first} label="First" />
+  <PaginationLink link={page.url.prev} label="Prev" />
+  <PaginationLink label=`Page ${page.currentPage}` />
+  <PaginationLink link={page.url.next} label="Next" />
+  <PaginationLink link={page.url.last} label="Last" />
+</div>
+
+<style>
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+  }
+</style>
