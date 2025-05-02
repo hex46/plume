@@ -7,6 +7,4 @@ interface Props {
 const { link, label } = Astro.props;
 ---
 
-<>
-  {link ? <a href={link}>{label}</a> : <span>{label}</span>}
-</>
+{link ? <a href={link}>{label}</a> : <span>{label}</span>}
