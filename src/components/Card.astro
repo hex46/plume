@@ -1,0 +1,23 @@
+---
+import type { CardItem, Post } from "@/types/nav";
+interface Props {
+  url: string;
+  title: string;
+  description: string;
+  date?: Date;
+  archived?: boolean;
+}
+
+const { url, title, description, date, archived } = Astro.props;
+
+const postDate = date ? Intl.DateTimeFormat("fr-FR").format(date) : undefined;
+---
+
+<article>
+  <hgroup>
+    <h2><a href={url}>{title}</a></h2>
+    {archived && <p>Archived</p>}
+    {postDate && <p>{postDate}</p>}
+  </hgroup>
+  <span>{description}</span>
+</article>

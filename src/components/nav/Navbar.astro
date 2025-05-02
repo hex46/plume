@@ -1,13 +1,13 @@
 ---
 import NavLink from "@/components/nav/NavLink.astro";
 
-import type { MatchItem, NavItem } from "@/types/nav";
+import type { MarkdownOrAstroPage, NavElement } from "@/types/nav";
 const matches = import.meta.glob("../../pages/**/index.{astro,md}", {
   eager: true,
 });
-const items = Object.values(matches) as MatchItem[];
+const items = Object.values(matches) as MarkdownOrAstroPage[];
 
-const mapToNavItem = (item: MatchItem): NavItem => ({
+const mapToNavItem = (item: MarkdownOrAstroPage): NavElement => ({
   url: item.url || "/",
   title:
     item.url === ""
@@ -15,12 +15,12 @@ const mapToNavItem = (item: MatchItem): NavItem => ({
       : item.title || item.frontmatter?.title || "Untitled",
 });
 
-const navItemWithTitleOnly = (item: MatchItem) =>
+const navItemWithTitleOnly = (item: MarkdownOrAstroPage) =>
   Boolean(item.title || item.frontmatter?.title);
 
-const sortItem = (a: NavItem, b: NavItem): number => {
-  const isHome = (item: NavItem) => item.url === "/";
-  const isAbout = (item: NavItem) => item.url === "/about";
+const sortItem = (a: NavElement, b: NavElement): number => {
+  const isHome = (item: NavElement) => item.url === "/";
+  const isAbout = (item: NavElement) => item.url === "/about";
 
   if (isHome(a)) return -1;
   if (isHome(b)) return 1;

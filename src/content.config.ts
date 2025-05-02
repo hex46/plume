@@ -23,4 +23,25 @@ const blog = defineCollection({
     lastUpdate: z.optional(z.date()),
   }),
 });
-export const collections = { components, pages, blog };
+
+const projects = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/projects" }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    description: z.string(),
+    order: z.number().default(Number.MAX_SAFE_INTEGER),
+    archived: z.boolean().default(false),
+  }),
+});
+
+const talks = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/talks" }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    description: z.string(),
+    order: z.number().default(Number.MAX_SAFE_INTEGER),
+  }),
+});
+export const collections = { components, pages, blog, projects, talks };

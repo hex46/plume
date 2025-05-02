@@ -1,0 +1,43 @@
+---
+import Layout from "@/layouts/Layout.astro";
+import Card from "@/components/Card.astro";
+import type { CardItem, Post } from "@/types/nav";
+import { getCollection } from "astro:content";
+import type { Page, PaginateFunction } from "astro";
+import Pagination from "@/components/pagination/Pagination.astro";
+
+interface Props {
+  page: Page<Post>;
+}
+
+export const title = "Talks";
+
+export async function getStaticPaths({
+  paginate,
+}: {
+  paginate: PaginateFunction;
+}) {
+  const talks = (await getCollection("talks")).map(
+    (talk) =>
+      ({
+        url: `/talks/${talk.id}`,
+        title: talk.data.title,
+        description: talk.data.description,
+      }) as CardItem,
+  );
+
+  return paginate(talks, { pageSize: 2 });
+}
+
+const { page } = Astro.props;
+---
+
+<Layout title={title}>
+  <h1>Talks</h1>
+  {
+    page.data.map((talk) => (
+      <Card url={talk.url} title={talk.title} description={talk.description} />
+    ))
+  }
+  <Pagination page={page} />
+</Layout>

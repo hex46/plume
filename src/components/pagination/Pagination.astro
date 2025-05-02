@@ -7,15 +7,20 @@ interface Props {
 }
 
 const { page } = Astro.props;
+const hasPages = page.size != page.total;
 ---
 
-<div>
-  <PaginationLink link={page.url.first} label="First" />
-  <PaginationLink link={page.url.prev} label="Prev" />
-  <PaginationLink label=`Page ${page.currentPage}` />
-  <PaginationLink link={page.url.next} label="Next" />
-  <PaginationLink link={page.url.last} label="Last" />
-</div>
+{
+  hasPages && (
+    <div>
+      <PaginationLink link={page.url.first} label="First" />
+      <PaginationLink link={page.url.prev} label="Prev" />
+      <PaginationLink label={`Page ${page.currentPage}`} />
+      <PaginationLink link={page.url.next} label="Next" />
+      <PaginationLink link={page.url.last} label="Last" />
+    </div>
+  )
+}
 
 <style>
   div {

@@ -1,4 +1,4 @@
-export interface MatchItem {
+export interface MarkdownOrAstroPage {
   url: string;
   title?: string;
   frontmatter?: {
@@ -6,14 +6,22 @@ export interface MatchItem {
   };
 }
 
-export interface NavItem {
+export interface NavElement {
   url: string;
   title: string;
 }
 
-export interface PostItem {
-  id: string;
+export interface CardItem {
   title: string;
-  created: Date;
+  url: string;
   description: string;
+}
+
+export interface Post extends CardItem {
+  created: Date;
+  lastModified?: Date;
+}
+
+export interface Project extends CardItem {
+  archived: boolean;
 }
