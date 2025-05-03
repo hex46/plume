@@ -8,7 +8,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "prettier": "prettier -w .",
-    "test:c": "vitest run"
+    "test:c": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
     "@picocss/pico": "^2.1.1",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "@playwright/test": "^1.52.0",
     "@types/node": "^22.15.3",
+    "playwright": "^1.52.0",
     "prettier": "^3.5.3",
     "prettier-plugin-astro": "^0.14.1",
     "vitest": "^3.1.2"
