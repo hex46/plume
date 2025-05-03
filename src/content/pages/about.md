@@ -2,8 +2,6 @@
 title: "About"
 ---
 
-# Complete Markdown Syntax
-
 This document demonstrates all possible Markdown syntax elements.
 
 ## Headings
