@@ -12,7 +12,7 @@ const hasPages = page.size != page.total;
 
 {
   hasPages && (
-    <div>
+    <div aria-label="pagination">
       <PaginationLink link={page.url.first} label="First" />
       <PaginationLink link={page.url.prev} label="Prev" />
       <PaginationLink label={`Page ${page.currentPage}`} />
