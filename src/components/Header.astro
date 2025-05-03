@@ -3,20 +3,25 @@
 ---
 
 <header>
-  <span>Plume 🪶</span>
+  <slot>
+    <p>
+      This is my fallback content. Please, add content in <code
+        >src/content/components/header.md</code
+      >
+    </p>
+  </slot>
 </header>
 
 <style>
   header {
     display: flex;
     margin-top: 5rem;
-    margin-bottom: 2rem;
+    margin-bottom: 0;
     align-items: baseline;
     justify-content: space-between;
   }
 
-  span {
-    transition: 0.3s;
+  header :global(p) {
     font-size: 4rem;
     font-weight: bolder;
   }

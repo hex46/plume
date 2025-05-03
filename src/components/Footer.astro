@@ -1,17 +1,14 @@
 ---
-import { getEntry, render } from "astro:content";
-import Layout from "@/layouts/Layout.astro";
 
-const footerContent = await getEntry("components", "footer");
-
-if (!footerContent) {
-  throw new Error('Could not find "footer" page for "footer" component.');
-}
-
-const { Content } = await render(footerContent);
 ---
 
 <hr />
 <footer>
-  <Content />
+  <slot>
+    <p>
+      This is my fallback content. Please, add content in <code
+        >src/content/components/footer.md</code
+      >
+    </p>
+  </slot>
 </footer>

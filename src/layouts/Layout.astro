@@ -4,8 +4,26 @@ import "@/styles/main.scss";
 import Navbar from "@/components/nav/Navbar.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
+import { getEntry, render } from "astro:content";
 
 const { title } = Astro.props;
+
+const headerAsEntry = await getEntry("components", "header");
+if (!headerAsEntry) {
+  throw new Error(
+    'Could not find "src/content/components/header.md" page for "header" component.',
+  );
+}
+
+const footerContentAsEntry = await getEntry("components", "footer");
+if (!footerContentAsEntry) {
+  throw new Error(
+    'Could not find "src/content/components/footer" page for "footer" component.',
+  );
+}
+
+const { Content: HeaderContent } = await render(headerAsEntry);
+const { Content: FooterContent } = await render(footerContentAsEntry);
 ---
 
 <!doctype html>
@@ -18,12 +36,16 @@ const { title } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <Header />
+    <Header>
+      <HeaderContent />
+    </Header>
     <Navbar />
     <main>
       <slot />
     </main>
-    <Footer />
+    <Footer>
+      <FooterContent />
+    </Footer>
   </body>
 </html>
 
