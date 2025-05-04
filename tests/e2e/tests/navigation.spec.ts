@@ -1,10 +1,12 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { PlumePage } from "../pages/PlumePage.ts";
 
 test.describe("Navigation", () => {
   test("has index", async ({ page }) => {
-    await page.goto("/");
+    const indexPage = new PlumePage(page);
+    await indexPage.toHome();
 
-    await expect(page).toHaveTitle(/Hello there/);
+    await indexPage.hasTitle(/Hello there/);
   });
 
   [
@@ -15,12 +17,12 @@ test.describe("Navigation", () => {
     { pageName: "About", title: "About", url: "/about" },
   ].forEach(({ pageName, title, url }) => {
     test(`has ${pageName} page`, async ({ page }) => {
-      await page.goto("/");
+      const indexPage = new PlumePage(page);
+      await indexPage.toHome();
 
-      await page.getByRole("link", { name: pageName }).click();
-
-      await page.waitForURL(url);
-      await expect(page).toHaveTitle(title);
+      await indexPage.clickNavigation(pageName);
+      await indexPage.hasUrl(url);
+      await indexPage.hasTitle(title);
     });
   });
 });
