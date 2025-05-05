@@ -1,7 +1,5 @@
 import { expect, type Page } from "@playwright/test";
-import { Pagination } from "./Pagination.ts";
-
-// To do : simplifier les méthodes / encapsuler dans d'autres classes ?
+import { Pagination } from "@e2e/pages/Pagination.ts";
 
 export class PlumePage {
   private readonly page: Page;

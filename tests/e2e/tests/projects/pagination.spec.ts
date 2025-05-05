@@ -1,6 +1,6 @@
 import { test } from "@playwright/test";
-import { PlumePage } from "../../pages/PlumePage.ts";
-import { PaginationAction, PaginationLink } from "../../pages/Pagination.ts";
+import { PlumePage } from "@e2e/pages/PlumePage.ts";
+import { PaginationAction, PaginationLink } from "@e2e/pages/Pagination.ts";
 
 test.describe("projects pagination", () => {
   let projectPage: PlumePage;

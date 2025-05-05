@@ -1,5 +1,5 @@
 import { test } from "@playwright/test";
-import { PlumePage } from "../../pages/PlumePage.ts";
+import { PlumePage } from "@e2e/pages/PlumePage.ts";
 
 test.describe("talks pagination", () => {
   let talksPage: PlumePage;

@@ -1,84 +1,79 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { PlumePage } from "@e2e/pages/PlumePage.ts";
+import { PaginationAction, PaginationLink } from "@e2e/pages/Pagination.ts";
 
-const exactMatchOption = { exact: true };
-
-const firstPageLink = { name: "First" };
-const previousPageLink = { name: "Prev" };
-const nextPageLink = { name: "Next" };
-const lastPageLink = { name: "Last" };
-
-// TODO: to PageObject
-
-test.describe("blog pagination", () => {
+test.describe("projects pagination", () => {
+  let blogPage: PlumePage;
   test.beforeEach(async ({ page }) => {
-    await page.goto("/blog");
+    blogPage = new PlumePage(page);
+    await blogPage.to("/blog");
   });
 
   test.describe("first page", () => {
-    test("pagination is present", async ({ page }) => {
-      await expect(
-        page.getByLabel("pagination", exactMatchOption),
-      ).toBeVisible();
+    test("pagination is present", async () => {
+      await blogPage.pagination.exists();
     });
 
-    test("first element is not clickable", async ({ page }) => {
-      await expect(page.getByRole("link", firstPageLink)).not.toBeVisible();
+    test("first element is not clickable", async () => {
+      await blogPage.pagination
+        .action(PaginationLink.FIRST)
+        .is(PaginationAction.UNCLICKABLE);
     });
 
-    test("prev element is not clickable", async ({ page }) => {
-      await expect(page.getByRole("link", previousPageLink)).not.toBeVisible();
+    test("prev element is not clickable", async () => {
+      await blogPage.pagination
+        .action(PaginationLink.PREVIOUS)
+        .is(PaginationAction.UNCLICKABLE);
     });
 
-    test("Current page is visible", async ({ page }) => {
-      await expect(page.getByText("Page 1", exactMatchOption)).toBeVisible();
+    test("Current page is visible", async () => {
+      await blogPage.pagination.isPage(1);
     });
 
-    test("navigate to next page", async ({ page }) => {
-      const nextPage = page.getByRole("link", nextPageLink);
-      await nextPage.click();
-      await page.waitForURL("/blog/2");
+    test("navigate to next page", async () => {
+      await blogPage.pagination.navigate(PaginationLink.NEXT);
+      await blogPage.hasUrl("/blog/2");
     });
 
-    test("navigate to last page", async ({ page }) => {
-      const nextPage = page.getByRole("link", lastPageLink);
-      await nextPage.click();
-      await page.waitForURL("/blog/8");
+    test("navigate to last page", async () => {
+      await blogPage.pagination.navigate(PaginationLink.LAST);
+      await blogPage.hasUrl("/blog/8");
     });
   });
 
   test.describe("last page", () => {
-    test.beforeEach(async ({ page }) => {
-      await page.goto("/blog/8");
+    test.beforeEach(async () => {
+      await blogPage.to("/blog/8");
     });
 
-    test("pagination is present", async ({ page }) => {
-      await expect(
-        page.getByLabel("pagination", exactMatchOption),
-      ).toBeVisible();
+    test("pagination is present", async () => {
+      await blogPage.pagination.exists();
     });
 
-    test("navigate to first page", async ({ page }) => {
-      const nextPage = page.getByRole("link", firstPageLink);
-      await nextPage.click();
-      await page.waitForURL("/blog/1");
+    test("navigate to first page", async () => {
+      await blogPage.pagination.navigate(PaginationLink.FIRST);
+      await blogPage.hasUrl("/blog/1");
     });
 
-    test("navigate to previous page", async ({ page }) => {
-      const nextPage = page.getByRole("link", previousPageLink);
-      await nextPage.click();
-      await page.waitForURL("/blog/7");
+    test("navigate to previous page", async () => {
+      await blogPage.pagination.navigate(PaginationLink.PREVIOUS);
+      await blogPage.hasUrl("/blog/7");
     });
 
-    test("current page is visible", async ({ page }) => {
-      await expect(page.getByText("Page 8", exactMatchOption)).toBeVisible();
+    test("current page is visible", async () => {
+      await blogPage.pagination.isPage(8);
     });
 
-    test("next page link is not clickable", async ({ page }) => {
-      await expect(page.getByRole("link", nextPageLink)).not.toBeVisible();
+    test("next page link is not clickable", async () => {
+      await blogPage.pagination
+        .action(PaginationLink.NEXT)
+        .is(PaginationAction.UNCLICKABLE);
     });
 
-    test("last page link is not clickable", async ({ page }) => {
-      await expect(page.getByRole("link", lastPageLink)).not.toBeVisible();
+    test("last page link is not clickable", async () => {
+      await blogPage.pagination
+        .action(PaginationLink.LAST)
+        .is(PaginationAction.UNCLICKABLE);
     });
   });
 });

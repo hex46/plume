@@ -1,19 +1,20 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
+import { PlumePage } from "@e2e/pages/PlumePage.ts";
 
 test.describe("projects", () => {
+  let projectPage: PlumePage;
+
   test.beforeEach(async ({ page }) => {
-    await page.goto("/projects");
+    projectPage = new PlumePage(page);
+    await projectPage.to("/projects");
   });
 
-  test("has 2 projects", async ({ page }) => {
-    expect(await page.getByRole("article").count()).toBe(2);
+  test("has 2 projects", async () => {
+    await projectPage.hasArticle(2);
   });
 
-  test("navigate to first project", async ({ page }) => {
-    const firstBlogPostLink = page.getByRole("link", {
-      name: "Lorem Ipsum - 0",
-    });
-    await firstBlogPostLink.click();
-    await page.waitForURL("/projects/lorem_ipsum_0");
+  test("navigate to first project", async () => {
+    await projectPage.clickOnLink("Lorem Ipsum - 0");
+    await projectPage.hasUrl("/projects/lorem_ipsum_0");
   });
 });
