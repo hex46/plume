@@ -1,18 +1,18 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Card from "@/components/Card.astro";
-import type { CardItem } from "@/types/Card";
 import { getCollection } from "astro:content";
 import type { Page, PaginateFunction } from "astro";
 import Pagination from "@/components/pagination/Pagination.astro";
+import type { Thought } from "@/types/Card";
 import { isCollectionEmpty } from "@/content.config";
 import type { CollectionName } from "@/types/Collection";
 
 interface Props {
-  page: Page<CardItem>;
+  page: Page<Thought>;
 }
 
-const collectionUsed: CollectionName = "talks";
+const collectionUsed: CollectionName = "thoughts";
 const isEmpty = await isCollectionEmpty(collectionUsed);
 if (isEmpty) {
   console.warn(`${collectionUsed} collection is empty`);
@@ -24,28 +24,25 @@ export async function getStaticPaths({
 }: {
   paginate: PaginateFunction;
 }) {
-  const talks = (await getCollection("talks")).map(
-    (talk) =>
+  const thoughts = (await getCollection("thoughts")).map(
+    (thought) =>
       ({
-        url: `/talks/${talk.id}`,
-        title: talk.data.title,
-        description: talk.data.description,
-      }) as CardItem,
+        url: `/thought/${thought.id}`,
+        title: thought.data.title,
+        created: thought.data.created,
+      }) as Thought,
   );
 
-  return paginate(talks, { pageSize: 2 });
+  return paginate(thoughts, { pageSize: 2 });
 }
 
 const { page } = Astro.props;
-const title = "Talks";
+
+const title = "Thoughts";
 ---
 
 <Layout title={title}>
-  <h1>Talks</h1>
-  {
-    page.data.map((talk) => (
-      <Card url={talk.url} title={talk.title} description={talk.description} />
-    ))
-  }
+  <h1>Thoughts</h1>
+  {page.data.map((thought) => <Card url={thought.url} title={thought.title} />)}
   <Pagination page={page} />
 </Layout>

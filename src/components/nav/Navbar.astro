@@ -1,18 +1,17 @@
 ---
 import NavLink from "@/components/nav/NavLink.astro";
 
-import type { MarkdownOrAstroPage, NavElement } from "@/types/nav";
+import type { MarkdownOrAstroPage } from "@/types/Page";
+import type { NavElement } from "@/types/Navigation";
+
 const matches = import.meta.glob("../../pages/**/index.{astro,md}", {
   eager: true,
 });
-const items = Object.values(matches) as MarkdownOrAstroPage[];
 
+const items = Object.values(matches) as MarkdownOrAstroPage[];
 const mapToNavItem = (item: MarkdownOrAstroPage): NavElement => ({
   url: item.url || "/",
-  title:
-    item.url === ""
-      ? "Home"
-      : item.title || item.frontmatter?.title || "Untitled",
+  title: item.title || item.frontmatter?.title || "Untitled",
 });
 
 const navItemWithTitleOnly = (item: MarkdownOrAstroPage) =>
@@ -38,7 +37,7 @@ const navItems = items
 
 <nav>
   <ul>
-    {navItems.slice(0, 5).map((item) => <NavLink item={item} />)}
+    {navItems.map((item) => <NavLink item={item} />)}
   </ul>
 </nav>
 <hr />

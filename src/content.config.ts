@@ -1,6 +1,7 @@
-import { defineCollection, z } from "astro:content";
+import { defineCollection, getCollection, z } from "astro:content";
 
 import { glob } from "astro/loaders";
+import type { CollectionName } from "@/types/Collection";
 
 const components = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/components/" }),
@@ -44,4 +45,25 @@ const talks = defineCollection({
     order: z.number().default(Number.MAX_SAFE_INTEGER),
   }),
 });
-export const collections = { components, pages, blog, projects, talks };
+
+const thoughts = defineCollection({
+  loader: glob({ pattern: "**/*.md", base: "./src/content/thoughts" }),
+  schema: z.object({
+    slug: z.string(),
+    title: z.string(),
+    created: z.date(),
+  }),
+});
+
+export const collections = {
+  components,
+  pages,
+  blog,
+  projects,
+  talks,
+  thoughts,
+};
+
+export const isCollectionEmpty = async (
+  name: CollectionName,
+): Promise<boolean> => (await getCollection(name)).length === 0;

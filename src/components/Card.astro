@@ -1,9 +1,8 @@
 ---
-import type { CardItem } from "@/types/nav";
 interface Props {
   url: string;
   title: string;
-  description: string;
+  description?: string;
   date?: Date;
   archived?: boolean;
 }
@@ -19,5 +18,5 @@ const postDate = date ? Intl.DateTimeFormat("fr-FR").format(date) : undefined;
     {archived && <p>Archived</p>}
     {postDate && <p>{postDate}</p>}
   </hgroup>
-  <span>{description}</span>
+  {description && <span>{description}</span>}
 </article>

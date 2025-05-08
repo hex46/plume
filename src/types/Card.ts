@@ -1,16 +1,3 @@
-export interface MarkdownOrAstroPage {
-  url: string;
-  title?: string;
-  frontmatter?: {
-    title: string;
-  };
-}
-
-export interface NavElement {
-  url: string;
-  title: string;
-}
-
 export interface CardItem {
   title: string;
   url: string;
@@ -24,4 +11,8 @@ export interface Post extends CardItem {
 
 export interface Project extends CardItem {
   archived: boolean;
+}
+
+export interface Thought extends CardItem {
+  created: Date;
 }

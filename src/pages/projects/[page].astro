@@ -1,16 +1,23 @@
 ---
 import Layout from "@/layouts/Layout.astro";
 import Card from "@/components/Card.astro";
-import type { Post, Project } from "@/types/nav";
+import type { Project } from "@/types/Card";
 import { getCollection } from "astro:content";
 import type { Page, PaginateFunction } from "astro";
 import Pagination from "@/components/pagination/Pagination.astro";
+import type { CollectionName } from "@/types/Collection";
+import { isCollectionEmpty } from "@/content.config";
 
 interface Props {
   page: Page<Project>;
 }
 
-export const title = "Projects";
+const collectionUsed: CollectionName = "projects";
+const isEmpty = await isCollectionEmpty(collectionUsed);
+if (isEmpty) {
+  console.warn(`${collectionUsed} collection is empty`);
+  return Astro.rewrite("/404");
+}
 
 export async function getStaticPaths({
   paginate,
@@ -44,6 +51,7 @@ export async function getStaticPaths({
   return paginate(projects, { pageSize: 2 });
 }
 
+const title = "Projects";
 const { page } = Astro.props;
 ---
 

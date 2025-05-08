@@ -1,13 +1,13 @@
 ---
 import type { Page } from "astro";
-import PaginationLink from "./PaginationLink.astro";
+import PaginationLink from "@/components/pagination/PaginationLink.astro";
 
 interface Props {
   page: Page<unknown>;
 }
 
 const { page } = Astro.props;
-const hasPages = page.size != page.total;
+const hasPages = page.size !== page.total;
 ---
 
 {

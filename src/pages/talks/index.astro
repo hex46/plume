@@ -1,4 +1,12 @@
 ---
+import { isCollectionEmpty } from "@/content.config";
+import type { CollectionName } from "@/types/Collection";
+
 export const title = "Talks";
-return Astro.rewrite("/talks/1");
+
+const collectionUsed: CollectionName = "talks";
+const isEmpty = await isCollectionEmpty(collectionUsed);
+if (isEmpty) {
+  return Astro.rewrite("/404");
+} else return Astro.rewrite(`/${collectionUsed}/1`);
 ---

@@ -2,9 +2,9 @@
 import { isCollectionEmpty } from "@/content.config";
 import type { CollectionName } from "@/types/Collection";
 
-export const title = "Blog";
+export const title = "Thoughts";
 
-const collectionUsed: CollectionName = "blog";
+const collectionUsed: CollectionName = "thoughts";
 const isEmpty = await isCollectionEmpty(collectionUsed);
 if (isEmpty) {
   return Astro.rewrite("/404");
