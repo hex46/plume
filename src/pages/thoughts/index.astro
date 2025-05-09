@@ -3,10 +3,10 @@ import { isCollectionEmpty } from "@/content.config";
 import type { CollectionName } from "@/types/Collection";
 
 export const title = "Thoughts";
+export const collection: CollectionName = "thoughts";
 
-const collectionUsed: CollectionName = "thoughts";
-const isEmpty = await isCollectionEmpty(collectionUsed);
+const isEmpty = await isCollectionEmpty(collection);
 if (isEmpty) {
   return Astro.rewrite("/404");
-} else return Astro.rewrite(`/${collectionUsed}/1`);
+} else return Astro.rewrite(`/${collection}/1`);
 ---

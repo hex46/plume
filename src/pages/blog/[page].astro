@@ -12,7 +12,7 @@ interface Props {
   page: Page<Post>;
 }
 
-const collectionUsed: CollectionName = "blog";
+export const collectionUsed: CollectionName = "blog";
 const isEmpty = await isCollectionEmpty(collectionUsed);
 if (isEmpty) {
   console.warn(`${collectionUsed} collection is empty`);
