@@ -1,6 +1,8 @@
 @import "mediaqueries.css";
 @import "header.css";
 @import "pagination.css";
+@import "card.css";
+@import "footer.css";
 
 body {
   font-family: "Roboto", sans-serif;
