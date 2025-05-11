@@ -4,14 +4,25 @@ import type { NavElement } from "@/types/Navigation";
 interface Props {
   item: NavElement;
 }
+const { item } = Astro.props;
 
 const pathname = Astro.url.pathname;
 
-const { item } = Astro.props;
+const isIndex = () => item.url === pathname;
+const getCurrentCategoryFromPath = () => {
+  const pathSegments = pathname.split("/");
+  return pathSegments.length > 2 ? pathSegments[1] : undefined;
+};
+
+const currentCategory = getCurrentCategoryFromPath();
+const isCurrentCategory = () =>
+  currentCategory ? item.url.includes(currentCategory) : false;
+
+const isActive = isIndex() || isCurrentCategory();
 ---
 
 <li>
-  <a class={item.url === pathname ? "active" : undefined} href={item.url}>
+  <a class={isActive ? "active" : undefined} href={item.url}>
     {item.title}
   </a>
 </li>
