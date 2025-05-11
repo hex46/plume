@@ -28,7 +28,7 @@ const mapToNavItem = (item: MarkdownOrAstroPage): NavElement => ({
   title: item.title || item.frontmatter?.title || "Error?",
 });
 
-const sortItem = (a: NavElement, b: NavElement): number => {
+const sortByUrl = (a: NavElement, b: NavElement): number => {
   const isHome = (item: NavElement) => item.url === "/";
   const isAbout = (item: NavElement) => item.url === "/about";
 
@@ -40,7 +40,9 @@ const sortItem = (a: NavElement, b: NavElement): number => {
   return a.title.localeCompare(b.title);
 };
 
-const asyncFilterForCollectionPage = async (pages: MarkdownOrAstroPage[]) => {
+const asyncFilterForPageWithCollection = async (
+  pages: MarkdownOrAstroPage[],
+) => {
   const simplePageOrPageWithNotEmptyCollection: MarkdownOrAstroPage[] = [];
   for (const item of pages) {
     if (await navItemWithoutEmptyCollectionFilter(item)) {
@@ -51,11 +53,11 @@ const asyncFilterForCollectionPage = async (pages: MarkdownOrAstroPage[]) => {
 };
 
 const navItems = (
-  await asyncFilterForCollectionPage(pagesCanBeAddedInNavigationMenu)
+  await asyncFilterForPageWithCollection(pagesCanBeAddedInNavigationMenu)
 )
   .filter(navItemWithTitleOnlyFilter)
   .map(mapToNavItem)
-  .sort(sortItem);
+  .sort(sortByUrl);
 ---
 
 <nav>

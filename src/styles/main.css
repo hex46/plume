@@ -1,5 +1,6 @@
 @import "mediaqueries.css";
-@import "navbar.css";
+@import "header.css";
+@import "pagination.css";
 
 body {
   font-family: "Roboto", sans-serif;

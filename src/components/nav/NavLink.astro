@@ -9,11 +9,11 @@ const { item } = Astro.props;
 const pathname = Astro.url.pathname;
 
 const isIndex = () => item.url === pathname;
+
 const getCurrentCategoryFromPath = () => {
   const pathSegments = pathname.split("/");
   return pathSegments.length > 2 ? pathSegments[1] : undefined;
 };
-
 const currentCategory = getCurrentCategoryFromPath();
 const isCurrentCategory = () =>
   currentCategory ? item.url.includes(currentCategory) : false;
