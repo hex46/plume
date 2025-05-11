@@ -2,18 +2,10 @@
 import "@/styles/main.css";
 
 import Navbar from "@/components/nav/Navbar.astro";
-import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
 import { getEntry, render } from "astro:content";
 
 const { title } = Astro.props;
-
-const headerAsEntry = await getEntry("components", "header");
-if (!headerAsEntry) {
-  throw new Error(
-    'Could not find "src/content/components/header.md" page for "header" component.',
-  );
-}
 
 const footerContentAsEntry = await getEntry("components", "footer");
 if (!footerContentAsEntry) {
@@ -22,7 +14,6 @@ if (!footerContentAsEntry) {
   );
 }
 
-const { Content: HeaderContent } = await render(headerAsEntry);
 const { Content: FooterContent } = await render(footerContentAsEntry);
 ---
 
@@ -36,9 +27,6 @@ const { Content: FooterContent } = await render(footerContentAsEntry);
     <title>{title}</title>
   </head>
   <body>
-    <Header>
-      <HeaderContent />
-    </Header>
     <Navbar />
     <main>
       <slot />

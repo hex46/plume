@@ -23,10 +23,6 @@ test.describe("Pages structure", () => {
         await plumePage.hasTitle(title);
       });
 
-      test("has header", async () => {
-        await plumePage.hasHeader();
-      });
-
       test("has navigation", async () => {
         await plumePage.hasNavigation();
       });

@@ -31,10 +31,6 @@ export class PlumePage {
     await this.page.waitForURL(url);
   }
 
-  async hasHeader() {
-    await expect(this.page.getByRole("banner")).toBeVisible();
-  }
-
   async hasNavigation() {
     await expect(this.page.getByRole("navigation")).toBeVisible();
   }
