@@ -1,0 +1,23 @@
+nav {
+  width: 100%;
+  ul {
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+  }
+
+  a {
+    text-decoration: none;
+    color: gray;
+    transition: 0.5s;
+    padding: 0.5rem;
+  }
+  a:hover {
+    color: black;
+  }
+
+  a.active {
+    color: black;
+  }
+}

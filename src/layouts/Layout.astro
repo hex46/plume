@@ -1,5 +1,5 @@
 ---
-import "@/styles/main.scss";
+import "@/styles/main.css";
 
 import Navbar from "@/components/nav/Navbar.astro";
 import Header from "@/components/Header.astro";
@@ -49,30 +49,4 @@ const { Content: FooterContent } = await render(footerContentAsEntry);
   </body>
 </html>
 
-<style>
-  body {
-    width: 100%;
-    margin-right: auto;
-    margin-left: auto;
-    padding-right: var(--pico-spacing);
-    padding-left: var(--pico-spacing);
-  }
-
-  @media (min-width: 576px) {
-    body {
-      max-width: 510px;
-      padding-right: 0;
-      padding-left: 0;
-    }
-  }
-  @media (min-width: 768px) {
-    body {
-      max-width: 710px;
-    }
-  }
-  @media (min-width: 1024px) {
-    body {
-      max-width: 900px;
-    }
-  }
-</style>
+<style></style>
