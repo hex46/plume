@@ -8,6 +8,7 @@ test.describe("Pages structure", () => {
     { pageName: "Projects", title: "Projects", url: "/projects" },
     { pageName: "Talks", title: "Talks", url: "/talks" },
     { pageName: "About", title: "About", url: "/about" },
+    { pageName: "Now", title: "Now", url: "/now" },
   ];
 
   pages.forEach(({ pageName, title, url }) => {

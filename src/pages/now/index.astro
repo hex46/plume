@@ -1,0 +1,18 @@
+---
+import { getEntry, render } from "astro:content";
+import Layout from "@/layouts/Layout.astro";
+
+export const title = "Now";
+
+const nowPage = await getEntry("pages", "now");
+if (!nowPage) {
+  console.warn('Could not find "now" page');
+  return Astro.rewrite("/404");
+}
+
+const { Content } = await render(nowPage!);
+---
+
+<Layout title={title}>
+  <Content />
+</Layout>

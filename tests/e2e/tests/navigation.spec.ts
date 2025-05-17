@@ -15,6 +15,7 @@ test.describe("Navigation", () => {
     { pageName: "Projects", title: "Projects", url: "/projects" },
     { pageName: "Talks", title: "Talks", url: "/talks" },
     { pageName: "About", title: "About", url: "/about" },
+    { pageName: "Now", title: "Now", url: "/now" },
   ].forEach(({ pageName, title, url }) => {
     test(`has ${pageName} page`, async ({ page }) => {
       const indexPage = new PlumePage(page);
