@@ -1,5 +1,7 @@
 ---
 title: "About"
+description: "About me"
+type: "article"
 ---
 
 This document demonstrates all possible Markdown syntax elements.

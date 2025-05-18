@@ -50,4 +50,31 @@ export class PlumePage {
   async clickOnLink(name: string) {
     await this.page.getByRole("link", { name }).click();
   }
+
+  async hasStandardMeta() {
+    const viewportMetaTag = this.page.locator("meta[name=viewport]");
+    expect(viewportMetaTag).toBeDefined();
+
+    const generatorMetaTag = this.page.locator("meta[name=generator]");
+    expect(generatorMetaTag).toBeDefined();
+
+    const metaCharsetLocator = this.page.locator("meta[charset=UTF-8]");
+    expect(metaCharsetLocator).toBeDefined();
+  }
+
+  async hasDefaultOpenGraphMetaTags() {
+    const ogTitleMetaTagLocator = this.page.locator("meta[property=og:title]");
+    expect(ogTitleMetaTagLocator).toBeDefined();
+
+    const ogTypeMetaTag = this.page.locator("meta[property=og:type]");
+    expect(ogTypeMetaTag).toBeDefined();
+
+    const ogURLMetaTag = this.page.locator("meta[property=og:url]");
+    expect(ogURLMetaTag).toBeDefined();
+
+    const ogDescriptionMetaTag = this.page.locator(
+      "meta[property=og:description]",
+    );
+    expect(ogDescriptionMetaTag).toBeDefined();
+  }
 }

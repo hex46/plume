@@ -11,6 +11,9 @@ const pages = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/pages/" }),
   schema: z.object({
     title: z.string(),
+    description: z.string(),
+    image: z.string().optional(),
+    type: z.enum(["website", "article"]).optional(),
   }),
 });
 

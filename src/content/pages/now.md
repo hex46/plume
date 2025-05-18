@@ -1,5 +1,7 @@
 ---
 title: "Now"
+description: "What about now ?"
+type: "article"
 ---
 
 This document demonstrates all possible Markdown syntax elements.

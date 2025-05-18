@@ -1,5 +1,7 @@
 ---
 title: "Talks"
+description: "Talk"
+type: "article"
 ---
 
 # Talks

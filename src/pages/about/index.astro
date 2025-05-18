@@ -10,9 +10,10 @@ if (!aboutPage) {
   return Astro.rewrite("/404");
 }
 
+const { description, image } = aboutPage.data;
 const { Content } = await render(aboutPage!);
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description} image={image}>
   <Content />
 </Layout>

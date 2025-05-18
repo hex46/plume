@@ -1,5 +1,7 @@
 ---
 title: "Projects"
+description: "Projects"
+type: "article"
 ---
 
 # Complete Markdown Syntax

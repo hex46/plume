@@ -35,6 +35,14 @@ test.describe("Pages structure", () => {
       test("has footer", async () => {
         await plumePage.hasFooter();
       });
+
+      test("has standard meta tags", async () => {
+        await plumePage.hasStandardMeta();
+      });
+
+      test("has default Open Graph meta tags", async () => {
+        await plumePage.hasDefaultOpenGraphMetaTags();
+      });
     });
   });
 });
