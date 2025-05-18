@@ -14,6 +14,6 @@ const { thought } = Astro.props;
 const { Content } = await render(thought);
 ---
 
-<Layout title={thought.data.title}>
+<Layout title={thought.data.title} description={thought.data.description}>
   <Content />
 </Layout>

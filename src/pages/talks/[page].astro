@@ -38,9 +38,10 @@ export async function getStaticPaths({
 
 const { page } = Astro.props;
 const title = "Talks";
+const description = "Projects";
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <h1>Talks</h1>
   {
     page.data.map((talk) => (

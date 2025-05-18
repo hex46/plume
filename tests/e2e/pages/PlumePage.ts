@@ -53,28 +53,33 @@ export class PlumePage {
 
   async hasStandardMeta() {
     const viewportMetaTag = this.page.locator("meta[name=viewport]");
-    expect(viewportMetaTag).toBeDefined();
+    await expect(viewportMetaTag).toHaveAttribute(
+      "content",
+      "width=device-width",
+    );
 
     const generatorMetaTag = this.page.locator("meta[name=generator]");
-    expect(generatorMetaTag).toBeDefined();
+    await expect(generatorMetaTag).toHaveAttribute("content");
 
     const metaCharsetLocator = this.page.locator("meta[charset=UTF-8]");
     expect(metaCharsetLocator).toBeDefined();
   }
 
   async hasDefaultOpenGraphMetaTags() {
-    const ogTitleMetaTagLocator = this.page.locator("meta[property=og:title]");
-    expect(ogTitleMetaTagLocator).toBeDefined();
+    const ogTitleMetaTagLocator = this.page.locator(
+      'meta[property="og:title"]',
+    );
+    await expect(ogTitleMetaTagLocator).toHaveAttribute("content");
 
-    const ogTypeMetaTag = this.page.locator("meta[property=og:type]");
-    expect(ogTypeMetaTag).toBeDefined();
+    const ogTypeMetaTag = this.page.locator('meta[property="og:type"]');
+    await expect(ogTypeMetaTag).toHaveAttribute("content");
 
-    const ogURLMetaTag = this.page.locator("meta[property=og:url]");
-    expect(ogURLMetaTag).toBeDefined();
+    const ogURLMetaTag = this.page.locator('meta[property="og:url"]');
+    await expect(ogURLMetaTag).toHaveAttribute("content");
 
     const ogDescriptionMetaTag = this.page.locator(
-      "meta[property=og:description]",
+      'meta[property="og:description"]',
     );
-    expect(ogDescriptionMetaTag).toBeDefined();
+    await expect(ogDescriptionMetaTag).toHaveAttribute("content");
   }
 }

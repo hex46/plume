@@ -3,17 +3,17 @@ import { getCollection, render } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 
 export async function getStaticPaths() {
-  const posts = await getCollection("projects");
-  return posts.map((project) => ({
-    params: { slug: project.data.slug },
-    props: { project },
+  const posts = await getCollection("talks");
+  return posts.map((talk) => ({
+    params: { slug: talk.data.slug },
+    props: { talk },
   }));
 }
 
-const { project } = Astro.props;
-const { Content } = await render(project);
+const { talk } = Astro.props;
+const { Content } = await render(talk);
 ---
 
-<Layout title={project.data.title}>
+<Layout title={talk.data.title} description={talk.data.description}>
   <Content />
 </Layout>

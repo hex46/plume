@@ -52,10 +52,11 @@ export async function getStaticPaths({
 }
 
 const title = "Projects";
+const description = "Projects";
 const { page } = Astro.props;
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description}>
   <h1>Projects</h1>
   {
     page.data.map((project) => (

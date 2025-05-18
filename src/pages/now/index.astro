@@ -9,10 +9,10 @@ if (!nowPage) {
   console.warn('Could not find "now" page');
   return Astro.rewrite("/404");
 }
-
+const { description, image } = nowPage.data;
 const { Content } = await render(nowPage!);
 ---
 
-<Layout title={title}>
+<Layout title={title} description={description} image={image}>
   <Content />
 </Layout>
