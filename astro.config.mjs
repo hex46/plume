@@ -8,6 +8,6 @@ export default defineConfig({
   vite: {
     plugins: [],
   },
-  site: 'http://localhost:4321',
+  site: "http://localhost:4321",
   integrations: [sitemap()],
 });

@@ -1,5 +1,6 @@
 ---
 import "@/styles/main.css";
+import { ClientRouter } from "astro:transitions";
 
 import Footer from "@/components/Footer.astro";
 import { getEntry, render } from "astro:content";
@@ -29,6 +30,7 @@ const { Content: FooterContent } = await render(footerContentAsEntry);
 <!doctype html>
 <html lang="en">
   <head>
+    <ClientRouter />
     <Meta description={description} />
     <OpenGraph
       title={title}

@@ -4,11 +4,16 @@ body {
   margin-left: auto;
 }
 
+main {
+  margin: auto;
+}
+
 @media (min-width: 576px) {
   body {
     max-width: 510px;
-    padding-right: 0;
-    padding-left: 0;
+    padding-right: 2rem;
+    padding-left: 1rem;
+    margin: auto;
   }
 }
 @media (min-width: 768px) {
