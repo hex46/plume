@@ -1,0 +1,60 @@
+---
+
+---
+
+<button id="theme-switcher-button"></button>
+
+<style>
+  button {
+    border: 0;
+    padding: 0.5rem;
+    background: none;
+    transition: 0.5s;
+    border-radius: 25%; /* Variabilize this */
+  }
+
+  button:hover {
+    cursor: pointer;
+  }
+
+  button:active {
+    background: grey;
+  }
+</style>
+
+<script>
+  import { Switcher } from "./core/Switcher";
+  import { Theme } from "./core/Theme";
+  import { LocalStorageAdaptor } from "./infrastructure/LocalStorageAdaptor";
+  import { PageAdaptor } from "./infrastructure/PageAdaptor";
+
+  const moonIcon = "🌒";
+  const sunIcon = "☀️";
+
+  const correspondingIcon = new Map<Theme, string>([
+    [Theme.LIGHT, moonIcon],
+    [Theme.DARK, sunIcon],
+  ]);
+
+  const defaultTheme = {
+    theme: Theme.LIGHT,
+    icon: sunIcon,
+  };
+
+  const switcher = new Switcher(
+    new LocalStorageAdaptor(),
+    new PageAdaptor(),
+    defaultTheme.theme,
+  );
+
+  const button = document.getElementById("theme-switcher-button");
+  if (!button) throw new Error("ThemeSwitcher: button is missing");
+
+  button.innerHTML = defaultTheme.icon;
+
+  button.addEventListener("click", () => {
+    switcher.change();
+    const currentTheme = switcher.getCurrent();
+    button.innerText = correspondingIcon.get(currentTheme) || defaultTheme.icon;
+  });
+</script>
