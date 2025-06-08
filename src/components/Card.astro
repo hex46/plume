@@ -5,9 +5,10 @@ interface Props {
   description?: string;
   date?: Date;
   archived?: boolean;
+  titleLevel?: 2 | 3;
 }
 
-const { url, title, description, date, archived } = Astro.props;
+const { url, title, description, date, archived, titleLevel = 2 } = Astro.props;
 
 const postDate = date ? Intl.DateTimeFormat("fr-FR").format(date) : undefined;
 ---

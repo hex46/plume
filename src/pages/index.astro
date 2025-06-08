@@ -1,6 +1,33 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import type { PaginateFunction } from "astro";
+import { getCollection } from "astro:content";
+import type { CollectionName } from "@/types/Collection";
+import { isCollectionEmpty } from "@/content.config";
+import type { Post } from "@/types/Card";
+import Card from "../components/Card.astro";
 export const title = "Home";
+
+export const collectionUsed: CollectionName = "blog";
+const isEmpty = await isCollectionEmpty(collectionUsed);
+if (isEmpty) {
+  console.warn(`${collectionUsed} collection is empty`);
+  return Astro.rewrite("/404");
+}
+
+const latestPost = (await getCollection("blog"))
+  .map(
+    (post) =>
+      ({
+        url: `/blog/${post.id}`,
+        title: post.data.title,
+        description: post.data.description,
+        created: post.data.created,
+      }) as Post,
+  )
+  .sort(
+    (postA, postB) => postB.created!.getTime() - postA.created!.getTime(),
+  )[0];
 ---
 
 <Layout title="Hello there" description="Hello there">
@@ -30,5 +57,17 @@ export const title = "Home";
       est minima ut atque et. Qui fuga eos aut. Magni ratione in est corrupti
       totam.
     </p>
+  </section>
+  <section>
+    <h2>Latest post</h2>
+    <Card
+      url={latestPost.url}
+      title={latestPost.title}
+      description={latestPost.description}
+      date={latestPost.created}
+    />
+    <span>
+      <a href="/blog/"> More posts here...</a>
+    </span>
   </section>
 </Layout>
