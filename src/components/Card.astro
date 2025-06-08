@@ -15,7 +15,18 @@ const postDate = date ? Intl.DateTimeFormat("fr-FR").format(date) : undefined;
 
 <article>
   <hgroup>
-    <h2><a href={url}>{title}</a></h2>
+    {
+      titleLevel === 2 ? (
+        <h2>
+          <a href={url}>{title}</a>
+        </h2>
+      ) : (
+        <h3>
+          <a href={url}>{title}</a>
+        </h3>
+      )
+    }
+
     {archived && <p>Archived</p>}
     {postDate && <p>{postDate}</p>}
   </hgroup>

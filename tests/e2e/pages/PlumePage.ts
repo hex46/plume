@@ -82,4 +82,10 @@ export class PlumePage {
     );
     await expect(ogDescriptionMetaTag).toHaveAttribute("content");
   }
+
+  async hasTitleLevel(titlesNumber: number, level: number) {
+    await expect(this.page.getByRole("heading", { level: level })).toHaveCount(
+      titlesNumber,
+    );
+  }
 }

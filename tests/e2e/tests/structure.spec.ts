@@ -43,6 +43,10 @@ test.describe("Pages structure", () => {
       test("has default Open Graph meta tags", async () => {
         await plumePage.hasDefaultOpenGraphMetaTags();
       });
+
+      test("has one h1", async () => {
+        await plumePage.hasTitleLevel(1, 1);
+      });
     });
   });
 });
