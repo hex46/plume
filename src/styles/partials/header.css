@@ -3,8 +3,6 @@ header {
   flex-direction: column;
   margin-top: 3rem;
   margin-bottom: 3rem;
-  gap: 1rem;
-  wrap-option: wrap;
 
   a {
     text-decoration: none;
@@ -19,14 +17,12 @@ header {
     color: #18181a;
   }
 
-  nav {
-    width: 100%;
-    ul {
-      padding: 0;
-      display: flex;
-      gap: 1rem;
-      list-style: none;
-    }
+  ul {
+    padding: 0;
+    display: flex;
+    gap: 1rem;
+    list-style: none;
+    flex-wrap: wrap;
   }
 
   div {

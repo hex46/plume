@@ -1,9 +1,11 @@
 @import "partials/colors.css";
-@import "partials/link.css";
 @import "partials/card.css";
 @import "partials/mediaqueries.css";
 @import "partials/header.css";
 @import "partials/pagination.css";
 @import "partials/footer.css";
 @import "partials/body.css";
+@import "partials/image.css";
+@import "partials/table.css";
+@import "partials/typography.css";
 @import "themes.css";

@@ -1,10 +1,11 @@
-body {
-  width: 100%;
-  margin-right: auto;
-  margin-left: auto;
+html {
+  min-width: 100vw;
+  min-height: 100vh;
 }
 
-main {
+body {
+  width: 90vw;
+  height: 100vh;
   margin: auto;
 }
 

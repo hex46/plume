@@ -13,11 +13,18 @@ const hasPages = page.size !== page.total;
 {
   hasPages && (
     <div aria-label="pagination">
-      <PaginationLink link={page.url.first} label="First" />
-      <PaginationLink link={page.url.prev} label="Prev" />
-      <PaginationLink label={`Page ${page.currentPage}`} />
-      <PaginationLink link={page.url.next} label="Next" />
-      <PaginationLink link={page.url.last} label="Last" />
+      <PaginationLink link={page.url.first} label="«" ariaLabel="First page" />
+      <PaginationLink
+        link={page.url.prev}
+        label="‹"
+        ariaLabel="Previous page"
+      />
+      <PaginationLink
+        label={`${page.currentPage}`}
+        ariaLabel={`Current page : ${page.currentPage}`}
+      />
+      <PaginationLink link={page.url.next} label="›" ariaLabel="Next page" />
+      <PaginationLink link={page.url.last} label="»" ariaLabel="Last page" />
     </div>
   )
 }

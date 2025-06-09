@@ -2,6 +2,15 @@ div[aria-label="pagination"] {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
-  margin: 1rem 0 1rem 0;
+
+  * {
+    display: flex;
+    text-align: center;
+    min-height: 3rem;
+    min-width: 3rem;
+    justify-content: center;
+    align-items: center;
+  }
 }

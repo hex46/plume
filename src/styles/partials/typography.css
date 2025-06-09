@@ -1,0 +1,106 @@
+body {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  margin: 0 auto;
+  max-width: 80ch;
+  padding: 1.5rem;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.2;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+h1 {
+  font-size: 2.5rem; /* Large and prominent */
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+a {
+  color: #007bff; /* Standard blue for links, highly recognizable */
+  text-decoration: underline; /* Always underline links for clear affordance */
+  transition: color 0.3s ease; /* Smooth transition for hover effect */
+}
+
+a:hover,
+a:focus {
+  color: #0056b3; /* Darker blue on hover/focus */
+  text-decoration: none; /* Remove underline on hover for a subtle interaction, or keep it if preferred */
+  outline: none; /* Remove default focus outline if you provide your own visible focus style */
+}
+
+/* Paragraphs for consistent spacing */
+p {
+  margin-bottom: 1rem; /* Space between paragraphs */
+}
+
+/* Blockquotes for differentiating quoted text */
+blockquote {
+  border-left: 4px solid #ccc; /* Subtle left border */
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+  color: #555; /* Slightly lighter text for blockquotes */
+}
+
+/* Code blocks for readability of code snippets */
+pre {
+  background-color: #f8f8f8;
+  border: 1px solid #eee;
+  padding: 1rem;
+  border-radius: 4px;
+  overflow-x: auto; /* Enable horizontal scrolling for long lines of code */
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace; /* Monospace font for code */
+  font-size: 0.9rem;
+}
+
+code {
+  font-family:
+    "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+  font-size: 0.9rem;
+  background-color: #f0f0f0;
+  padding: 0.2em 0.4em;
+  border-radius: 3px;
+}
+
+/* Lists for clear structure */
+ul,
+ol {
+  padding-left: 1.5rem;
+}
+
+li {
+  margin-bottom: 0.5rem;
+}
+
+/* Small text for meta-information (e.g., dates, captions) */
+small {
+  font-size: 0.875rem;
+  color: #777;
+}
+
+/* Focus styles for keyboard navigation */
+/* Ensure elements that can be tabbed to have a clear focus indicator */
+:focus {
+  outline: 2px solid #007bff; /* Blue outline for focus */
+  outline-offset: 2px; /* Space between the element and the outline */
+}

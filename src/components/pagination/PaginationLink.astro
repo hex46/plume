@@ -2,9 +2,18 @@
 interface Props {
   link?: string;
   label: string | number;
+  ariaLabel: string;
 }
 
-const { link, label } = Astro.props;
+const { link, label, ariaLabel } = Astro.props;
 ---
 
-{link ? <a href={link}>{label}</a> : <span>{label}</span>}
+{
+  link ? (
+    <a href={link} aria-label={ariaLabel}>
+      {label}
+    </a>
+  ) : (
+    <span aria-label={ariaLabel}>{label}</span>
+  )
+}
