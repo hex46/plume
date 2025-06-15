@@ -1,7 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import type { PaginateFunction } from "astro";
-import { getCollection } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import type { CollectionName } from "@/types/Collection";
 import { isCollectionEmpty } from "@/content.config";
 import type { Post } from "@/types/Card";
@@ -28,35 +28,19 @@ const latestPost = (await getCollection("blog"))
   .sort(
     (postA, postB) => postB.created!.getTime() - postA.created!.getTime(),
   )[0];
+
+const indexPage = await getEntry("index", "index");
+if (!indexPage) {
+  console.warn('Could not find "index" page');
+  return Astro.rewrite("/404");
+}
+
+const { Content } = await render(indexPage!);
 ---
 
 <Layout title="Hello there" description="Hello there">
   <section>
-    <h1>Hello there</h1>
-    <p>
-      Voluptate rerum fuga unde. Deserunt ea quibusdam consequatur. Impedit
-      repellat ab est sequi veritatis et non perspiciatis.
-    </p>
-    <p>
-      Iusto iste sit in unde voluptate debitis. Sit officia quis eveniet est
-      nobis. Repudiandae vitae quos est autem et quaerat.
-    </p>
-    <p>
-      Vel reiciendis velit ipsa ea. Quod ullam beatae hic quo. Et ut repellendus
-      consectetur deleniti reprehenderit quaerat architecto sint.
-    </p>
-    <p>
-      Eos nam itaque accusantium nulla minima et facere dignissimos. Dolore
-      repellendus aut rem. Aut dignissimos distinctio explicabo. Placeat laborum
-      placeat id exercitationem deserunt non. Impedit illum consequuntur quos
-      rerum aut veritatis dolor dolores. Molestias laudantium at perspiciatis
-      qui deleniti doloribus facere neque.
-    </p>
-    <p>
-      Quaerat voluptates soluta quam sit nihil sed quis aut. Et voluptates est
-      est minima ut atque et. Qui fuga eos aut. Magni ratione in est corrupti
-      totam.
-    </p>
+    <Content />
   </section>
   <section>
     <h2>Latest post</h2>
@@ -72,3 +56,9 @@ const latestPost = (await getCollection("blog"))
     </span>
   </section>
 </Layout>
+
+<style>
+  section:nth-of-type(1) {
+    margin-bottom: 5rem;
+  }
+</style>

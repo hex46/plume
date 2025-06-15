@@ -8,12 +8,22 @@ const components = defineCollection({
 });
 
 const pages = defineCollection({
-  loader: glob({ pattern: "*.md", base: "./src/content/pages/" }),
+  loader: glob({
+    pattern: ["*.md", "!index.md"],
+    base: "./src/content/pages/",
+  }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
     image: z.string().optional(),
     type: z.enum(["website", "article"]).optional(),
+  }),
+});
+
+const index = defineCollection({
+  loader: glob({ pattern: ["index.md"], base: "./src/content/pages/" }),
+  schema: z.object({
+    title: z.string(),
   }),
 });
 
@@ -59,6 +69,7 @@ const thoughts = defineCollection({
 });
 
 export const collections = {
+  index,
   components,
   pages,
   blog,
