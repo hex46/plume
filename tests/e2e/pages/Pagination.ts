@@ -45,7 +45,7 @@ export class Pagination {
 
   async isPage(page: number) {
     await expect(
-      this.page.getByText(`Page ${page}`, { exact: true }),
+      this.page.getByLabel(`Current page : ${page}`, { exact: true }),
     ).toBeVisible();
   }
 
