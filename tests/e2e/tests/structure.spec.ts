@@ -47,6 +47,10 @@ test.describe("Pages structure", () => {
       test("has one h1", async () => {
         await plumePage.hasTitleLevel(1, 1);
       });
+
+      test("has one toggle theme button", async () => {
+        await plumePage.hasToggleThemeButton();
+      });
     });
   });
 });

@@ -88,4 +88,8 @@ export class PlumePage {
       titlesNumber,
     );
   }
+
+  async hasToggleThemeButton() {
+    expect(this.page.locator(".theme-switcher-button")).toBeDefined();
+  }
 }

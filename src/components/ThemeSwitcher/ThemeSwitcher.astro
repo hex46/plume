@@ -2,10 +2,10 @@
 
 ---
 
-<button id="theme-switcher-button"></button>
+<theme-switcher></theme-switcher>
 
-<style>
-  button {
+<style is:global>
+  .theme-switcher-button {
     border: 0;
     padding: 0.5rem;
     background: none;
@@ -13,48 +13,80 @@
     border-radius: 25%; /* Variabilize this */
   }
 
-  button:hover {
+  .theme-switcher-button:hover {
     cursor: pointer;
   }
 
-  button:active {
+  .theme-switcher-button:active {
     background: grey;
   }
 </style>
 
 <script>
-  import { Switcher } from "./core/Switcher";
   import { Theme } from "./core/Theme";
+  import { Switcher } from "./core/Switcher";
   import { LocalStorageAdaptor } from "./infrastructure/LocalStorageAdaptor";
   import { PageAdaptor } from "./infrastructure/PageAdaptor";
 
-  const moonIcon = "🌒";
-  const sunIcon = "☀️";
+  type Icon = "🌒" | "☀️";
 
-  const correspondingIcon = new Map<Theme, string>([
-    [Theme.LIGHT, moonIcon],
-    [Theme.DARK, sunIcon],
-  ]);
-
-  const defaultTheme = {
-    theme: Theme.LIGHT,
-    icon: sunIcon,
+  type DefaultTheme = {
+    theme: Theme;
+    icon: Icon;
   };
 
-  const switcher = new Switcher(
-    new LocalStorageAdaptor(),
-    new PageAdaptor(),
-    defaultTheme.theme,
-  );
+  class ThemeSwitcher extends HTMLElement {
+    private switcher: Switcher;
+    private buttonClassName = "theme-switcher-button";
 
-  const button = document.getElementById("theme-switcher-button");
-  if (!button) throw new Error("ThemeSwitcher: button is missing");
+    private defaultTheme = {
+      theme: Theme.LIGHT,
+      icon: "☀️",
+    } as DefaultTheme;
 
-  button.innerHTML = defaultTheme.icon;
+    private correspondingIcon = new Map<Theme, Icon>([
+      [Theme.LIGHT, "🌒"],
+      [Theme.DARK, "☀️"],
+    ]);
 
-  button.addEventListener("click", () => {
-    switcher.change();
-    const currentTheme = switcher.getCurrent();
-    button.innerText = correspondingIcon.get(currentTheme) || defaultTheme.icon;
-  });
+    constructor() {
+      super();
+
+      this.switcher = new Switcher(
+        new LocalStorageAdaptor(),
+        new PageAdaptor(),
+        this.defaultTheme.theme,
+      );
+
+      const button = this.initializeButton();
+      this.append(button);
+
+      console.debug(
+        "ThemeSwitcher",
+        "Current Theme",
+        this.switcher.getCurrent(),
+      );
+    }
+
+    private initializeButton() {
+      const button = document.createElement("button");
+      button.classList.add(this.buttonClassName);
+      button.setAttribute("title", "Toggle theme");
+      const currentTheme = this.switcher.getCurrent();
+      button.innerHTML =
+        this.correspondingIcon.get(currentTheme) || this.defaultTheme.icon;
+
+      button.addEventListener("click", () => {
+        this.switcher.change();
+        const currentTheme = this.switcher.getCurrent();
+        console.debug("ThemeSwitcher", "Current Theme", currentTheme);
+        button.innerText =
+          this.correspondingIcon.get(currentTheme) || this.defaultTheme.icon;
+      });
+
+      return button;
+    }
+  }
+
+  customElements.define("theme-switcher", ThemeSwitcher);
 </script>
