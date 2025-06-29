@@ -13,8 +13,8 @@
     "test:e2e:ui": "playwright test --ui"
   },
   "dependencies": {
-    "@astrojs/sitemap": "^3.4.0",
-    "astro": "^5.8.0",
+    "@astrojs/sitemap": "^3.4.1",
+    "astro": "^5.10.1",
     "autoprefixer": "^10.4.21",
     "cssnano": "^7.0.6"
   },
