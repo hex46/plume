@@ -2,6 +2,7 @@
 import { defineConfig } from "astro/config";
 
 import sitemap from "@astrojs/sitemap";
+import rehypeExternalLinks from "rehype-external-links";
 
 // https://astro.build/config
 export default defineConfig({
@@ -9,5 +10,16 @@ export default defineConfig({
     plugins: [],
   },
   site: "http://localhost:4321",
+  markdown: {
+    rehypePlugins: [
+      [
+        rehypeExternalLinks,
+        {
+          rel: ["noreferrer", "external"],
+          target: "_blank",
+        },
+      ],
+    ],
+  },
   integrations: [sitemap()],
 });
