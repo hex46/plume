@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import { PlumePage } from "@e2e/pages/PlumePage.ts";
 
 test.describe("Pages structure", () => {
@@ -50,6 +50,10 @@ test.describe("Pages structure", () => {
 
       test("has one toggle theme button", async () => {
         await plumePage.hasToggleThemeButton();
+      });
+
+      test("has no referrer and external", async ({ page }) => {
+        await plumePage.allExternalLinksHaveNoReferrerAndExternal();
       });
     });
   });

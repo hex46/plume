@@ -1,0 +1,78 @@
+.theme-dark footer {
+  color: var(--dark-secondary);
+}
+
+.theme-dark header a {
+  color: var(--dark-secondary);
+}
+
+.theme-dark header a:hover {
+  color: var(--dark-primary);
+}
+
+.theme-dark header a.active {
+  color: var(--dark-primary);
+}
+
+.theme-dark div span {
+  background: white;
+  color: black;
+}
+
+.theme-dark table thead tr {
+  background-color: var(--dark-table-header);
+  color: var(--dark-background);
+}
+
+.theme-dark table tbody tr {
+  border-bottom: 1px solid var(--dark-table-border);
+}
+
+.theme-dark table tbody tr:nth-of-type(even) {
+  background-color: var(--dark-table-row);
+}
+
+.theme-dark table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--dark-table-border);
+}
+
+.theme-dark table tbody tr.active-row {
+  color: var(--dark-table-active-row);
+}
+
+body.theme-dark {
+  color: var(--dark-text);
+  background-color: var(--dark-background);
+}
+
+.theme-dark h1,
+.theme-dark h2,
+.theme-dark h3,
+.theme-dark h4,
+.theme-dark h5,
+.theme-dark h6 {
+  color: var(--dark-primary);
+}
+
+.theme-dark a {
+  color: var(--dark-text);
+}
+
+.theme-dark a:hover,
+.theme-dark a:focus {
+  color: var(--dark-primary);
+}
+
+.theme-dark blockquote {
+  color: var(--dark-secondary);
+  border-left: 4px solid var(--dark-blockquote-border);
+}
+
+.theme-dark small {
+  color: var(--dark-secondary);
+}
+
+.theme-dark :focus {
+  transition: none;
+  outline: 2px solid var(--dark-primary);
+}

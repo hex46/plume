@@ -1,0 +1,77 @@
+.theme-light footer {
+  color: var(--secondary);
+}
+
+.theme-light header a {
+  color: var(--secondary);
+}
+
+.theme-light header a:hover {
+  color: var(--primary);
+}
+
+.theme-light header a.active {
+  color: var(--primary);
+}
+
+.theme-light div span {
+  background: black;
+  color: white;
+}
+
+.theme-light table thead tr {
+  background-color: var(--table-header);
+  color: var(--background);
+}
+
+.theme-light table tbody tr {
+  border-bottom: 1px solid var(--table-border);
+}
+
+.theme-light table tbody tr:nth-of-type(even) {
+  background-color: var(--table-row);
+}
+
+.theme-light table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--table-border);
+}
+
+.theme-light table tbody tr.active-row {
+  color: var(--table-active-row);
+}
+
+body.theme-light {
+  color: var(--text);
+}
+
+.theme-light h1,
+.theme-light h2,
+.theme-light h3,
+.theme-light h4,
+.theme-light h5,
+.theme-light h6 {
+  color: var(--primary);
+}
+
+.theme-light a {
+  color: var(--text);
+}
+
+.theme-light a:hover,
+.theme-light a:focus {
+  color: var(--primary);
+}
+
+.theme-light blockquote {
+  color: var(--secondary);
+  border-left: 4px solid var(--blockquote-border);
+}
+
+.theme-light small {
+  color: var(--secondary);
+}
+
+.theme-light :focus {
+  transition: none;
+  outline: 2px solid var(--primary);
+}

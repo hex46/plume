@@ -4,7 +4,6 @@ body {
   margin: 0 auto;
   max-width: 80ch;
   padding: 1.5rem;
-  color: var(--text);
 }
 
 h1,
@@ -16,7 +15,6 @@ h6 {
   line-height: 1.2;
   margin-top: 2rem;
   margin-bottom: 1rem;
-  color: var(--primary);
 }
 
 h1 {
@@ -36,16 +34,8 @@ h4 {
 }
 
 a {
-  color: var(--text);
   text-decoration: underline;
   transition: color 0.3s ease;
-}
-
-a:hover,
-a:focus {
-  color: var(--primary);
-  text-decoration: none;
-  outline: none;
 }
 
 p {
@@ -53,11 +43,9 @@ p {
 }
 
 blockquote {
-  border-left: 4px solid #ccc;
   padding-left: 1.5rem;
   margin: 1.5rem 0;
   font-style: italic;
-  color: var(--secondary);
 }
 
 pre {
@@ -71,13 +59,22 @@ li {
   margin-bottom: 0.5rem;
 }
 
-/* Small text for meta-information (e.g., dates, captions) */
 small {
   font-size: 0.875rem;
   color: var(--secondary);
 }
 
 :focus {
-  outline: 2px solid var(--primary);
   outline-offset: 2px;
+}
+
+a[href^="http"]:after {
+  background-image: url("/src/assets/externalLink.svg");
+  background-size: cover;
+  content: "";
+  display: inline-block;
+  height: 1em;
+  margin-left: 0.1em;
+  vertical-align: sub;
+  width: 1em;
 }

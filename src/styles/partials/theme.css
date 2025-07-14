@@ -1,0 +1,7 @@
+@import "theme/light.css";
+@import "theme/dark.css";
+
+div[aria-label="pagination"] span {
+  background-color: inherit;
+  color: inherit;
+}

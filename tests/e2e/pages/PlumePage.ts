@@ -92,4 +92,10 @@ export class PlumePage {
   async hasToggleThemeButton() {
     expect(this.page.locator(".theme-switcher-button")).toBeDefined();
   }
+
+  async allExternalLinksHaveNoReferrerAndExternal() {
+    for (const link of await this.page.locator('a[href^="http"]').all()) {
+      await expect(link).toHaveAttribute("rel", "noreferrer external");
+    }
+  }
 }

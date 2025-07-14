@@ -6,15 +6,7 @@ header {
 
   a {
     text-decoration: none;
-    color: #707070;
     transition: 0.5s;
-  }
-  a:hover {
-    color: #18181a;
-  }
-
-  a.active {
-    color: #18181a;
   }
 
   ul {
@@ -31,8 +23,6 @@ header {
     justify-content: space-between;
 
     span {
-      background: black;
-      color: white;
       font-weight: bolder;
       padding: 0.25rem 0.5rem 0.25rem 0.5rem;
       width: fit-content;
