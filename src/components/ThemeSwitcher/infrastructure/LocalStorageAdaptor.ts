@@ -1,11 +1,10 @@
-import type { StoragePort } from "@/components/ThemeSwitcher/port/StoragePort.ts";
 import { Theme } from "@/components/ThemeSwitcher/core/Theme.ts";
 
-export class LocalStorageAdaptor implements StoragePort {
+export class LocalStorageAdaptor {
   private readonly key = "theme";
 
-  get(): Theme | null {
-    return localStorage.getItem(this.key) as Theme;
+  get(): Theme {
+    return (localStorage.getItem(this.key) as Theme) || Theme.UNKNOWN;
   }
 
   set(theme: Theme): void {

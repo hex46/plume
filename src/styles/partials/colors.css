@@ -1,4 +1,9 @@
+/*
+  Thanks to https://www.smashingmagazine.com/2024/03/setting-persisting-color-scheme-preferences-css-javascript/
+ */
 :root {
+  --color-scheme: light;
+
   --text: #232325;
   --primary: #18181a;
   --secondary: #707070;
@@ -11,15 +16,46 @@
   --table-row: #f3f3f3;
   --table-active-row: #009879;
 
-  --dark-text: #ffff;
-  --dark-primary: #ffff;
-  --dark-secondary: #707070;
-  --dark-background: #232325;
+  --logo-color: #ffff;
+  --logo-background: #18181a;
 
-  --dark-blockquote-border: #ccc;
+  color-scheme: var(--color-scheme, light);
 
-  --dark-table-border: #dddddd;
-  --dark-table-header: gray;
-  --dark-table-row: #37373a;
-  --dark-table-active-row: #009879;
+  &:has(#color-scheme option[value="dark"]:checked) {
+    --color-scheme: dark;
+    --text: #ffff;
+    --primary: #ffff;
+    --secondary: #707070;
+    --background: #232325;
+
+    --blockquote-border: #ccc;
+
+    --table-border: #dddddd;
+    --table-header: gray;
+    --table-row: #37373a;
+    --table-active-row: #009879;
+
+    --logo-color: #232325;
+    --logo-background: #ffff;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:has(#color-scheme option[value="system"]:checked) {
+      --color-scheme: dark;
+      --text: #ffff;
+      --primary: #ffff;
+      --secondary: #707070;
+      --background: #232325;
+
+      --blockquote-border: #ccc;
+
+      --table-border: #dddddd;
+      --table-header: gray;
+      --table-row: #37373a;
+      --table-active-row: #009879;
+
+      --logo-color: #232325;
+      --logo-background: #ffff;
+    }
+  }
 }

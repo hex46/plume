@@ -1,7 +1,83 @@
-@import "theme/light.css";
-@import "theme/dark.css";
-
 div[aria-label="pagination"] span {
   background-color: inherit;
   color: inherit;
+}
+
+footer {
+  color: var(--secondary);
+}
+
+header a {
+  color: var(--secondary);
+}
+
+header a:hover {
+  color: var(--primary);
+}
+
+header a.active {
+  color: var(--primary);
+}
+
+div span {
+  background: var(--logo-background);
+  color: var(--logo-color);
+}
+
+table thead tr {
+  background-color: var(--table-header);
+  color: var(--background);
+}
+
+table tbody tr {
+  border-bottom: 1px solid var(--table-border);
+}
+
+table tbody tr:nth-of-type(even) {
+  background-color: var(--table-row);
+}
+
+table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--table-border);
+}
+
+table tbody tr.active-row {
+  color: var(--table-active-row);
+}
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--primary);
+}
+
+a {
+  color: var(--text);
+}
+
+a:hover,
+a:focus {
+  color: var(--primary);
+}
+
+blockquote {
+  color: var(--secondary);
+  border-left: 4px solid var(--blockquote-border);
+}
+
+small {
+  color: var(--secondary);
+}
+
+:focus {
+  transition: none;
+  outline: 2px solid var(--primary);
 }

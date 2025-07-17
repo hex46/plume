@@ -1,19 +1,14 @@
-import type { PagePort } from "@/components/ThemeSwitcher/port/PagePort.ts";
 import { Theme } from "@/components/ThemeSwitcher/core/Theme.ts";
 
-export class PageAdaptor implements PagePort {
-  set(theme: Theme): void {
-    const body = document.body;
-    this.removeCurrentTheme(body);
-    this.updateTheme(body, theme);
+export class PageAdaptor {
+  setPageTheme(theme: Theme): void {
+    const selectInput = document.querySelector(
+      "#color-scheme",
+    ) as HTMLSelectElement;
+    selectInput.value = theme.valueOf();
   }
 
-  private removeCurrentTheme(body: HTMLElement) {
-    const themesAsStrings = Object.values(Theme).map((t) => t.valueOf());
-    body.classList.remove(...themesAsStrings);
-  }
-
-  private updateTheme(body: HTMLElement, theme: Theme) {
-    body.classList.add(theme);
-  }
+  getInputSelect = (): HTMLSelectElement => {
+    return document.querySelector("#color-scheme") as HTMLSelectElement;
+  };
 }
