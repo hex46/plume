@@ -1,37 +1,18 @@
-import type { StoragePort } from "@/components/ThemeSwitcher/port/StoragePort.ts";
-import type { PagePort } from "@/components/ThemeSwitcher/port/PagePort.ts";
-import { Theme } from "@/components/ThemeSwitcher/core/Theme.ts";
+import { LocalStorageAdaptor } from "@/components/ThemeSwitcher/infrastructure/LocalStorageAdaptor.ts";
+import { PageAdaptor } from "@/components/ThemeSwitcher/infrastructure/PageAdaptor.ts";
+import { Theme } from "./Theme";
 
-export class Switcher {
-  private storage: StoragePort;
-  private page: PagePort;
-  private theme: Theme;
+const initializeTheme = (storage: LocalStorageAdaptor, page: PageAdaptor) => {
+  const theme = storage.get();
+  if (theme !== Theme.UNKNOWN) page.setPageTheme(theme);
+};
 
-  public constructor(
-    storage: StoragePort,
-    page: PagePort,
-    defaultTheme: Theme,
-  ) {
-    this.storage = storage;
-    this.page = page;
-    this.theme = this.storage.get() || defaultTheme;
+const storeTheme = (storage: LocalStorageAdaptor, page: PageAdaptor) => {
+  return (event: Event) => {
+    const value = (event.target as HTMLSelectElement).value as Theme;
+    storage.set(value);
+    page.setPageTheme(value);
+  };
+};
 
-    this.page.set(this.theme);
-  }
-
-  public getCurrent(): Theme {
-    return this.theme;
-  }
-
-  public change() {
-    const newTheme = this.inverse(this.theme);
-    this.page.set(newTheme);
-    this.storage.set(newTheme);
-    this.theme = newTheme;
-  }
-
-  private inverse(theme: Theme): Theme {
-    if (theme === Theme.LIGHT) return Theme.DARK;
-    return Theme.LIGHT;
-  }
-}
+export { initializeTheme, storeTheme };

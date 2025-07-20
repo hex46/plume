@@ -10,7 +10,19 @@
 </select>
 
 <style>
+  /* Thanks to https://github.com/emma11y/tester-a11y */
   label[for="color-scheme"] {
+    border: 0 !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+    display: none;
+  }
+
+  #color-scheme {
     display: none;
   }
 </style>
@@ -19,27 +31,15 @@
   /**
    TODO:
    - Add tests
-   - Fixed bug requiring F5 to reload JS
+   - Fix dark theme when loading
    **/
   import { LocalStorageAdaptor } from "./infrastructure/LocalStorageAdaptor";
   import { PageAdaptor } from "./infrastructure/PageAdaptor";
-  import { Theme } from "./core/Theme";
+  import { initializeTheme, storeTheme } from "./core/Switcher";
 
-  const storage = new LocalStorageAdaptor();
-  const page = new PageAdaptor();
+  const pageAdaptor = new PageAdaptor();
+  const localStorageAdaptor = new LocalStorageAdaptor();
 
-  const theme = storage.get();
-  if (theme === Theme.UNKNOWN) {
-    // Do nothing
-  } else {
-    page.setPageTheme(theme);
-  }
-
-  const storeColorScheme = (event: Event) => {
-    const value = (event.target as HTMLSelectElement).value as Theme;
-    storage.set(value);
-    page.setPageTheme(value);
-  };
-
-  page.getInputSelect().addEventListener("input", storeColorScheme);
+  initializeTheme(localStorageAdaptor, pageAdaptor);
+  pageAdaptor.addEventListener(storeTheme(localStorageAdaptor, pageAdaptor));
 </script>
