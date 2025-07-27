@@ -1,40 +1,33 @@
-import { Theme } from "@/components/ThemeSwitcher/core/Theme.ts";
+import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
+import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
 
-export class PageAdaptor {
-  private readonly inputSelector = "color-scheme";
+export default class PageAdaptor implements PagePort {
+  private readonly selectElement: HTMLSelectElement;
+  private readonly labelElement: HTMLLabelElement;
 
-  constructor() {
-    this.showElementsIfJavascriptIsActive();
+  constructor(selectId: string) {
+    let labelSelector = `label[for='${selectId}']`;
+
+    this.selectElement = document.getElementById(selectId) as HTMLSelectElement;
+    this.labelElement = document.querySelector<HTMLLabelElement>(
+      labelSelector,
+    ) as HTMLLabelElement;
   }
 
-  setPageTheme(theme: Theme): void {
-    const selectInput = this.getSelectInput();
-    selectInput.value = theme.valueOf();
+  public setPageTheme(theme: ColorScheme): void {
+    this.selectElement.value = theme.valueOf();
   }
 
-  addEventListener = (callback: (event: Event) => void) => {
-    const selectInput = this.getSelectInput();
-    selectInput.addEventListener("input", callback);
-  };
-
-  private showElementsIfJavascriptIsActive() {
-    const elementToDisplay = [this.getSelectInput(), this.getLabel()];
-    elementToDisplay.forEach((element) => {
-      this.showElement(element);
-    });
-  }
-
-  private getSelectInput() {
-    return document.getElementById(this.inputSelector) as HTMLSelectElement;
-  }
-
-  private getLabel() {
-    return document.querySelector<HTMLElement>(
-      `label[for='${this.inputSelector}']`,
-    );
+  public showElementsIfJavascriptIsActive() {
+    const elementToDisplay = [this.selectElement, this.labelElement];
+    elementToDisplay.forEach(this.showElement);
   }
 
   private showElement(selectInput: HTMLElement | null) {
     if (selectInput) selectInput.style.display = "block";
+  }
+
+  public getSelectElement() {
+    return this.selectElement;
   }
 }

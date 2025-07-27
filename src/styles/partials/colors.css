@@ -21,7 +21,7 @@
 
   color-scheme: var(--color-scheme, light);
 
-  &:has(#color-scheme option[value="dark"]:checked) {
+  &:has(#theme-switcher-select option[value="dark"]:checked) {
     --color-scheme: dark;
     --text: #ffff;
     --primary: #ffff;
@@ -40,7 +40,7 @@
   }
 
   @media (prefers-color-scheme: dark) {
-    &:has(#color-scheme option[value="system"]:checked) {
+    &:has(#theme-switcher-select option[value="system"]:checked) {
       --color-scheme: dark;
       --text: #ffff;
       --primary: #ffff;

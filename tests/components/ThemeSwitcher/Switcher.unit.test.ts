@@ -1,58 +1,50 @@
 import { describe, vi, test, expect, beforeEach } from "vitest";
 
-import { Switcher } from "@/components/ThemeSwitcher/core/Switcher.ts";
-import type { StoragePort } from "@/components/ThemeSwitcher/port/StoragePort.ts";
-import type { PagePort } from "@/components/ThemeSwitcher/port/PagePort.ts";
-import { Theme } from "@/components/ThemeSwitcher/core/Theme.ts";
+import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
+import Switcher from "@/components/ThemeSwitcher/core/Switcher.ts";
+import type { StoragePort } from "@/components/ThemeSwitcher/core/port/StoragePort.ts";
+import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
+import type { EventPort } from "@/components/ThemeSwitcher/core/port/EventPort.ts";
+import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
 
 const storageMock = {
   set: vi.fn(),
-  get: vi.fn(() => Theme.LIGHT),
+  get: vi.fn(() => ColorScheme.LIGHT),
 } as StoragePort;
 
 const pageMock = {
-  set: vi.fn(),
+  setPageTheme: vi.fn(),
+  showElementsIfJavascriptIsActive: vi.fn(),
 } as PagePort;
+
+const eventHandlerMock = {
+  addEventOn: vi.fn(),
+} as EventPort;
 
 describe("Switcher", () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });
 
-  test("should get default theme", async () => {
-    const switcher = new Switcher(storageMock, pageMock, Theme.LIGHT);
-    const currentTheme: Theme = switcher.getCurrent();
-    expect(currentTheme).toBe(Theme.LIGHT);
-  });
+  describe("initialize event listener", () => {
+    test("should initialize on load page event", async () => {
+      const switcher = new Switcher(storageMock, pageMock, eventHandlerMock);
+      switcher.initializeEventListeners();
 
-  test("should change theme", async () => {
-    const switcher = new Switcher(storageMock, pageMock, Theme.LIGHT);
-    switcher.change();
-    const current = switcher.getCurrent();
-    expect(current).toBe(Theme.DARK);
-  });
+      expect(eventHandlerMock.addEventOn).toHaveBeenCalledWith(
+        EventType.LOAD_PAGE,
+        expect.any(Function),
+      );
+    });
 
-  test("should initialize from storage", async () => {
-    new Switcher(storageMock, pageMock, Theme.LIGHT);
-    expect(storageMock.get).toHaveBeenCalled();
-  });
+    test("should initialize on change theme event", async () => {
+      const switcher = new Switcher(storageMock, pageMock, eventHandlerMock);
+      switcher.initializeEventListeners();
 
-  test("should initialize page theme", async () => {
-    new Switcher(storageMock, pageMock, Theme.LIGHT);
-    expect(pageMock.set).toHaveBeenCalled();
-  });
-
-  test("should change theme and save with storage", async () => {
-    const switcher = new Switcher(storageMock, pageMock, Theme.LIGHT);
-    switcher.change();
-    expect(storageMock.set).toHaveBeenCalledTimes(1);
-  });
-
-  test("should change theme and update page", async () => {
-    const switcher = new Switcher(storageMock, pageMock, Theme.LIGHT);
-    switcher.change();
-
-    const initializeAndUpdate = 2;
-    expect(pageMock.set).toHaveBeenCalledTimes(initializeAndUpdate);
+      expect(eventHandlerMock.addEventOn).toHaveBeenCalledWith(
+        EventType.CHANGE_THEME,
+        expect.any(Function),
+      );
+    });
   });
 });

@@ -1,18 +1,40 @@
-import { LocalStorageAdaptor } from "@/components/ThemeSwitcher/infrastructure/LocalStorageAdaptor.ts";
-import { PageAdaptor } from "@/components/ThemeSwitcher/infrastructure/PageAdaptor.ts";
-import { Theme } from "./Theme";
+import { ColorScheme } from "./ColorScheme.ts";
+import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
+import type { StoragePort } from "@/components/ThemeSwitcher/core/port/StoragePort.ts";
+import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
+import type { EventPort } from "@/components/ThemeSwitcher/core/port/EventPort.ts";
 
-const initializeTheme = (storage: LocalStorageAdaptor, page: PageAdaptor) => {
-  const theme = storage.get();
-  if (theme !== Theme.UNKNOWN) page.setPageTheme(theme);
-};
+export default class Switcher {
+  private storage: StoragePort;
+  private page: PagePort;
+  private eventHandler: EventPort;
 
-const storeTheme = (storage: LocalStorageAdaptor, page: PageAdaptor) => {
-  return (event: Event) => {
-    const value = (event.target as HTMLSelectElement).value as Theme;
-    storage.set(value);
-    page.setPageTheme(value);
-  };
-};
+  constructor(storage: StoragePort, page: PagePort, eventHandler: EventPort) {
+    this.storage = storage;
+    this.page = page;
+    this.eventHandler = eventHandler;
+  }
 
-export { initializeTheme, storeTheme };
+  public initializeEventListeners() {
+    this.eventHandler.addEventOn(EventType.LOAD_PAGE, () => this.onPageLoad());
+    this.eventHandler.addEventOn(EventType.CHANGE_THEME, (event) =>
+      this.switch(event),
+    );
+  }
+
+  private onPageLoad() {
+    this.initializeTheme();
+    this.page.showElementsIfJavascriptIsActive();
+  }
+
+  private initializeTheme() {
+    const theme = this.storage.get();
+    if (theme !== ColorScheme.UNKNOWN) this.page.setPageTheme(theme);
+  }
+
+  private switch(event: Event) {
+    const value = (event.target as HTMLSelectElement).value as ColorScheme;
+    this.storage.set(value);
+    this.page.setPageTheme(value);
+  }
+}
