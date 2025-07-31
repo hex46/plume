@@ -15,6 +15,7 @@ const storageMock = {
 const pageMock = {
   setPageTheme: vi.fn(),
   showElementsIfJavascriptIsActive: vi.fn(),
+  getSelectElement: vi.fn(),
 } as PagePort;
 
 const eventHandlerMock = {

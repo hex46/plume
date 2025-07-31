@@ -1,12 +1,12 @@
 import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
 import type { EventPort } from "@/components/ThemeSwitcher/core/port/EventPort.ts";
-import PageAdaptor from "@/components/ThemeSwitcher/infrastructure/PageAdaptor.ts";
+import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
 
 export default class EventHandler implements EventPort {
-  private readonly pageAdaptor: PageAdaptor;
+  private readonly pagePort: PagePort;
 
-  constructor(pageAdaptor: PageAdaptor) {
-    this.pageAdaptor = pageAdaptor;
+  constructor(pageAdaptor: PagePort) {
+    this.pagePort = pageAdaptor;
   }
 
   public addEventOn(
@@ -30,6 +30,6 @@ export default class EventHandler implements EventPort {
   }
 
   private addEventListenerOnSelect(callback: (event: Event) => void) {
-    this.pageAdaptor.getSelectElement().addEventListener("input", callback);
+    this.pagePort.getSelectElement().addEventListener("input", callback);
   }
 }

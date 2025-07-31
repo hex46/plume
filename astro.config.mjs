@@ -8,6 +8,9 @@ import rehypeExternalLinks from "rehype-external-links";
 export default defineConfig({
   vite: {
     plugins: [],
+    test: {
+      environment: "jsdom",
+    },
   },
   site: "http://localhost:4321",
   markdown: {
