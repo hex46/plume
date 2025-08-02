@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, it, test } from "vitest";
 // @ts-ignore
-import Card from "@/components/Card.astro";
+import Card from "../../src/components/card/Card.astro";
 
 describe("Card", () => {
   test("should display title, url and description", async () => {

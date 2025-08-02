@@ -1,11 +1,11 @@
 import { describe, vi, test, expect, beforeEach } from "vitest";
 
-import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
-import Switcher from "@/components/ThemeSwitcher/core/Switcher.ts";
-import type { StoragePort } from "@/components/ThemeSwitcher/core/port/StoragePort.ts";
-import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
-import type { EventPort } from "@/components/ThemeSwitcher/core/port/EventPort.ts";
-import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
+import { ColorScheme } from "@/components/theme-switcher/core/ColorScheme.ts";
+import Switcher from "@/components/theme-switcher/core/Switcher.ts";
+import type { StoragePort } from "@/components/theme-switcher/core/port/StoragePort.ts";
+import type PagePort from "@/components/theme-switcher/core/port/PagePort.ts";
+import type { EventPort } from "@/components/theme-switcher/core/port/EventPort.ts";
+import { EventType } from "@/components/theme-switcher/core/EventType.ts";
 
 const storageMock = {
   set: vi.fn(),

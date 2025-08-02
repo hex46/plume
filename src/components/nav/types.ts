@@ -6,3 +6,8 @@ export interface MarkdownOrAstroPage {
     title: string;
   };
 }
+
+export interface NavElement {
+  url: string;
+  title: string;
+}

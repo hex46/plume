@@ -1,8 +1,8 @@
 import { describe, vi, expect, beforeEach, it } from "vitest";
 
-import EventHandler from "@/components/ThemeSwitcher/infrastructure/EventHandler.ts";
-import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
-import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
+import EventHandler from "@/components/theme-switcher/infrastructure/EventHandler.ts";
+import type PagePort from "@/components/theme-switcher/core/port/PagePort.ts";
+import { EventType } from "@/components/theme-switcher/core/EventType.ts";
 
 describe("EventHandler", () => {
   const selectElement = document.createElement("select");

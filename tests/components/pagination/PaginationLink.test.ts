@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, test } from "vitest";
 // @ts-ignore
-import PaginationLink from "@/components/pagination/PaginationLink.astro";
+import PaginationLink from "../../../src/components/pagination/PaginationLink.astro";
 
 describe("PaginationLink", () => {
   test('should not show link when "link" prop is undefined', async () => {

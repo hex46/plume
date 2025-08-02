@@ -1,6 +1,6 @@
-import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
-import type { EventPort } from "@/components/ThemeSwitcher/core/port/EventPort.ts";
-import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
+import { EventType } from "@/components/theme-switcher/core/EventType.ts";
+import type { EventPort } from "@/components/theme-switcher/core/port/EventPort.ts";
+import type PagePort from "@/components/theme-switcher/core/port/PagePort.ts";
 
 export default class EventHandler implements EventPort {
   private readonly pagePort: PagePort;

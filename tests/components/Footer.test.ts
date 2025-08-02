@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
-import { describe, expect, it, test } from "vitest";
+import { describe, expect, test } from "vitest";
 // @ts-ignore
-import Footer from "@/components/Footer.astro";
+import Footer from "../../src/components/footer/Footer.astro";
 
 describe("Footer", () => {
   test("should display fallback if slot is undefined", async () => {

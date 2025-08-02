@@ -1,7 +1,13 @@
 import { defineCollection, getCollection, z } from "astro:content";
 
 import { glob } from "astro/loaders";
-import type { CollectionName } from "@/types/Collection";
+
+export type CollectionName =
+  | "pages"
+  | "blog"
+  | "projects"
+  | "talks"
+  | "thoughts";
 
 const components = defineCollection({
   loader: glob({ pattern: "*.md", base: "./src/content/components/" }),

@@ -1,5 +1,5 @@
-import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
-import type { StoragePort } from "@/components/ThemeSwitcher/core/port/StoragePort.ts";
+import { ColorScheme } from "@/components/theme-switcher/core/ColorScheme.ts";
+import type { StoragePort } from "@/components/theme-switcher/core/port/StoragePort.ts";
 
 export default class LocalStorageAdaptor implements StoragePort {
   private readonly key = "theme";

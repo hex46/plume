@@ -1,7 +1,7 @@
 import { describe, expect, beforeEach, it } from "vitest";
 
-import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
-import LocalStorageAdaptor from "@/components/ThemeSwitcher/infrastructure/LocalStorageAdaptor.ts";
+import { ColorScheme } from "@/components/theme-switcher/core/ColorScheme.ts";
+import LocalStorageAdaptor from "@/components/theme-switcher/infrastructure/LocalStorageAdaptor.ts";
 
 describe("LocalStorageAdaptor", () => {
   beforeEach(() => {

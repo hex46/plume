@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, test } from "vitest";
 // @ts-ignore
-import OpenGraph from "@/components/meta/OpenGraph.astro";
+import OpenGraph from "../../../src/components/meta/OpenGraph.astro";
 
 describe("OpenGraph", () => {
   test("should display og:title", async () => {

@@ -1,12 +1,12 @@
 ---
-import Layout from "@/layouts/Layout.astro";
-import Card from "@/components/Card.astro";
 import { getCollection } from "astro:content";
 import type { Page, PaginateFunction } from "astro";
-import Pagination from "@/components/pagination/Pagination.astro";
-import type { Thought } from "@/types/Card";
-import { isCollectionEmpty } from "@/content.config";
-import type { CollectionName } from "@/types/Collection";
+import type { Thought } from "../../components/card/types";
+import type { CollectionName } from "../../content.config";
+import { isCollectionEmpty } from "../../content.config";
+import Layout from "../../layouts/Layout.astro";
+import Card from "../../components/card/Card.astro";
+import Pagination from "../../components/pagination/Pagination.astro";
 
 interface Props {
   page: Page<Thought>;

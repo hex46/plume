@@ -1,8 +1,8 @@
 import { ColorScheme } from "./ColorScheme.ts";
-import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
-import type { StoragePort } from "@/components/ThemeSwitcher/core/port/StoragePort.ts";
-import { EventType } from "@/components/ThemeSwitcher/core/EventType.ts";
-import type { EventPort } from "@/components/ThemeSwitcher/core/port/EventPort.ts";
+import type PagePort from "@/components/theme-switcher/core/port/PagePort.ts";
+import type { StoragePort } from "@/components/theme-switcher/core/port/StoragePort.ts";
+import { EventType } from "@/components/theme-switcher/core/EventType.ts";
+import type { EventPort } from "@/components/theme-switcher/core/port/EventPort.ts";
 
 export default class Switcher {
   private storage: StoragePort;

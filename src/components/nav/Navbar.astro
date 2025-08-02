@@ -1,10 +1,8 @@
 ---
-import NavLink from "@/components/nav/NavLink.astro";
-
-import type { MarkdownOrAstroPage } from "@/types/Page";
-import type { NavElement } from "@/types/Navigation";
-import { isCollectionEmpty } from "@/content.config";
-import type { CollectionName } from "@/types/Collection";
+import type { MarkdownOrAstroPage, NavElement } from "./types";
+import { isCollectionEmpty } from "../../content.config";
+import type { CollectionName } from "../../content.config";
+import NavLink from "./NavLink.astro";
 
 const pagesCanBeAddedInNavigationMenu = Object.values(
   import.meta.glob("../../pages/**/index.{astro,md}", {

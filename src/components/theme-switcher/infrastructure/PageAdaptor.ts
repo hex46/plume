@@ -1,5 +1,5 @@
-import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
-import type PagePort from "@/components/ThemeSwitcher/core/port/PagePort.ts";
+import { ColorScheme } from "@/components/theme-switcher/core/ColorScheme.ts";
+import type PagePort from "@/components/theme-switcher/core/port/PagePort.ts";
 
 export default class PageAdaptor implements PagePort {
   private readonly selectElement: HTMLSelectElement;

@@ -1,7 +1,7 @@
 import { experimental_AstroContainer as AstroContainer } from "astro/container";
 import { describe, expect, test } from "vitest";
 // @ts-ignore
-import Pagination from "@/components/pagination/Pagination.astro";
+import Pagination from "../../../src/components/pagination/Pagination.astro";
 import type { Page } from "astro";
 
 describe("Pagination", () => {

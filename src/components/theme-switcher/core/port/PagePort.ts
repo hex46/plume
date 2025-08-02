@@ -1,4 +1,4 @@
-import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
+import { ColorScheme } from "@/components/theme-switcher/core/ColorScheme.ts";
 
 export default interface PagePort {
   setPageTheme(theme: ColorScheme): void;

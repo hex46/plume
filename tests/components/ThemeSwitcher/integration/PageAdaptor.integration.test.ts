@@ -1,7 +1,7 @@
 import { describe, vi, expect, beforeEach, it } from "vitest";
 
-import { ColorScheme } from "@/components/ThemeSwitcher/core/ColorScheme.ts";
-import PageAdaptor from "@/components/ThemeSwitcher/infrastructure/PageAdaptor.ts";
+import { ColorScheme } from "@/components/theme-switcher/core/ColorScheme.ts";
+import PageAdaptor from "@/components/theme-switcher/infrastructure/PageAdaptor.ts";
 
 describe("PageAdaptor", () => {
   const optionDark = document.createElement("option");
